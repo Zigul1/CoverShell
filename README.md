@@ -8,9 +8,11 @@ Tested succesfully using **PowerShell 5.1** on **Windows 10 Pro**.
 
 ### USE
 
-- Set a compatible execution policy with the PowerShell command: `set-execution policy -scope CurrentUser RemoteSigned`
-- righ-click on the downloaded file "CoverShell.ps1" and then left-click on "Run with PowerShell"
-- the shell will flash for a moment, will minimize itself and then you will see the GUI (in the background of already opened windows)
+- Copy all the raw text of the script and paste it in a new notepad file
+- save it and give it a .ps1 extension
+- set a compatible execution policy with the PowerShell command: `set-execution policy -scope CurrentUser RemoteSigned` (or use the "bypass" one)
+- righ-click on the file just created ("[name].ps1") and then left-click on "Run with PowerShell"
+- the shell will appear for a moment, then it will minimize itself and you will see the GUI, in the background of already opened windows.
 
 [optional]
 - if you want to make it an executable file (.exe), you can use [PS2EXE](https://github.com/MScholtes/PS2EXE) or similare applications.
@@ -42,8 +44,11 @@ CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e scrip
 
 ### USO
 
-- Impostare una execution policy adeguata usando il comando PowerShell `set-execution policy -scope CurrentUser RemoteSigned`
-- cliccare con il destro sul file scaricato "CoverShell-ita.ps1" e poi con il sinistro su "Esegui con PowerShell"
+- Copiare tutto il contenuto "raw" dello script e incollarlo in un nuovo documento di testo
+- salvarlo e dargli come estensione .ps1
+- impostare una execution policy adeguata usando il comando PowerShell `set-execution policy -scope CurrentUser RemoteSigned` (oppure usare quella "bypass")
+- cliccare con il destro sul file appena creato ("[nome].ps1") e poi con il sinistro su "Esegui con PowerShell"
+- la shell comparirà per un momento, poi si ridurrà ad icona e comparirà la GUI, in background rispetto alle finestre già aperte.
 
 [opzionale]
 - per renderlo un eseguibile (.exe) è possibile usare [PS2EXE](https://github.com/MScholtes/PS2EXE) o applicazioni simili.
