@@ -2,7 +2,7 @@
 (*disponibile anche in versione italiana ![image](https://github.com/Zigul1/CoverShell/assets/157254375/019162ce-a988-4be8-9fbd-3c6dc37f9640)
  a fondo pagina*)
 
-CoverShell is a PowerShell graphical interface to run useful commands and scripts, so there's no need to remember them or copy/paste them from saved notes to the shell. It's made with Windows Form and can be expanded adding more tabs and panels.
+CoverShell is a PowerShell graphical interface to run useful commands and scripts, so there's no need to remember them, copy/paste them from saved notes or manage a personal scripts archive. It's made with Windows Form and can be expanded adding more tabs and panels.
 
 Tested succesfully using **PowerShell 5.1** on **Windows 10 Pro**.
 
@@ -53,7 +53,7 @@ There are commands for:
 ## Anche in italiano! ![image](https://github.com/Zigul1/CoverShell/assets/157254375/66240214-9ee5-4829-8bee-1fd0fe72cc70)
 
 
-CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e *script* utili, senza bisogno di ricordarli a memoria o copia-incollarli dagli appunti alla *shell*. Realizzato con Windows Form, può essere arricchito aggiungendo altri *tab* e pannelli.
+CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e *script* utili, senza bisogno di ricordarli a memoria, copia-incollarli dagli appunti o dover gestire un archivio di *script* personali. Realizzato con Windows Form, può essere arricchito aggiungendo altri *tab* e pannelli.
 
 Testato con successo usando **PowerShell 5.1** su **Windows 10 Pro**.
 
