@@ -1,6 +1,6 @@
 # CoverShell
 (*disponibile anche in versione italiana ![image](https://github.com/Zigul1/CoverShell/assets/157254375/019162ce-a988-4be8-9fbd-3c6dc37f9640)
- v. fondo pagina*)
+ a fondo pagina*)
 
 CoverShell is a PowerShell graphical interface to run useful commands and scripts, so there's no need to remember them or copy/paste them from saved notes to the shell. It's made with Windows Form and can be expanded adding more tabs and panels.
 
