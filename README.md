@@ -9,14 +9,14 @@ Tested succesfully using **PowerShell 5.1** on **Windows 10 Pro**.
 
 ### USE
 
-A)
+1.
 - Download the repository in .zip format and then extract it in a folder
-OR
+>OR
 - copy all the raw text of the script "CoverShell.ps1" and paste it in a new notepad file, save it and give it a .ps1 extension
-B)
+2.
 - set a compatible execution policy with the PowerShell command: `set-execution policy -scope CurrentUser RemoteSigned` (or use the "bypass" one)
 - right-click on the .ps1 file and then left-click on "Run with PowerShell"
-C)
+3.
 - the shell will appear for a moment, then it will minimize itself and you will see the GUI, in the background of already opened windows
 - to close the application, just close the CoverShell window or close the Powershell one minimized
 
@@ -53,22 +53,22 @@ There are commands for:
 ## Anche in italiano! ![image](https://github.com/Zigul1/CoverShell/assets/157254375/66240214-9ee5-4829-8bee-1fd0fe72cc70)
 
 
-CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e script utili, senza bisogno di ricordarli a memoria o copia-incollarli dagli appunti alla shell. Realizzato con Windows Form, può essere arricchito aggiungendo altri tab e pannelli.
+CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e *script* utili, senza bisogno di ricordarli a memoria o copia-incollarli dagli appunti alla *shell*. Realizzato con Windows Form, può essere arricchito aggiungendo altri *tab* e pannelli.
 
 Testato con successo usando **PowerShell 5.1** su **Windows 10 Pro**.
 
 
 ### USO
 
-A)
-- Scaricare il repository in formato .zip ed estrarlo in una cartella
-OPPURE
-- copiare tutto il contenuto "raw" dello script "CoverShell-ita.ps1" e incollarlo in un nuovo documento di testo, salvarlo e dargli come estensione .ps1
-B)
-- impostare una execution policy adeguata usando il comando PowerShell `set-execution policy -scope CurrentUser RemoteSigned` (oppure usare quella "bypass")
+1.
+- Scaricare il *repository* in formato .zip ed estrarlo in una cartella
+>OPPURE
+- copiare tutto il contenuto "*raw*" dello *script* "CoverShell-ita.ps1" e incollarlo in un nuovo documento di testo, salvarlo e dargli come estensione .ps1
+2.
+- impostare una *execution policy* adeguata usando il comando PowerShell `set-execution policy -scope CurrentUser RemoteSigned` (oppure usare quella "*bypass*")
 - cliccare con il destro sul file .ps1 e poi con il sinistro su "Esegui con PowerShell"
-C)
-- la shell apparirà per un momento, poi si ridurrà ad icona e comparirà la GUI, in background rispetto alle finestre già aperte
+3.
+- la *shell* apparirà per un momento, poi si ridurrà ad icona e comparirà la GUI, in *background* rispetto alle finestre già aperte
 - per chiudere l'applicazione, è sufficiente chiudere la finestra di CoverShell o quella minimizzata di PowerShell.
 
 [opzionale]
