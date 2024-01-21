@@ -4,7 +4,7 @@
 
 CoverShell is a PowerShell graphical interface to run useful commands and scripts, so there's no need to remember them, copy/paste them from saved notes or manage a personal scripts archive. It's made with Windows Form and can be expanded adding more tabs and panels.
 
-Tested succesfully using **PowerShell 5.1** on **Windows 10 Pro**.
+Tested succesfully using **PowerShell 5.1** and **PowerShell 7.4** on **Windows 10 Pro** and **Windows 11 Pro**.
 
 
 ### USE
@@ -55,7 +55,7 @@ There are commands for:
 
 CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e *script* utili, senza bisogno di ricordarli a memoria, copia-incollarli dagli appunti o dover gestire un archivio di *script* personali. Realizzato con Windows Form, può essere arricchito aggiungendo altri *tab* e pannelli.
 
-Testato con successo usando **PowerShell 5.1** su **Windows 10 Pro**.
+Testato con successo usando **PowerShell 5.1** e **PowerShell 7.4** su **Windows 10 Pro** e **Windows 11 Pro**.
 
 
 ### USO
