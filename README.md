@@ -9,7 +9,7 @@ Tested succesfully using **PowerShell 5.1** on **Windows 10 Pro**.
 
 ### USE
 
-- Copy all the raw text of the script and paste it in a new notepad file
+- Copy all the raw text of the script "CoverShell.ps1" and paste it in a new notepad file
 - save it and give it a .ps1 extension
 - set a compatible execution policy with the PowerShell command: `set-execution policy -scope CurrentUser RemoteSigned` (or use the "bypass" one)
 - right-click on the file just created ("[name].ps1") and then left-click on "Run with PowerShell"
@@ -53,7 +53,7 @@ CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e scrip
 
 ### USO
 
-- Copiare tutto il contenuto "raw" dello script e incollarlo in un nuovo documento di testo
+- Copiare tutto il contenuto "raw" dello script "CoverShell-ita.ps1" e incollarlo in un nuovo documento di testo
 - salvarlo e dargli come estensione .ps1
 - impostare una execution policy adeguata usando il comando PowerShell `set-execution policy -scope CurrentUser RemoteSigned` (oppure usare quella "bypass")
 - cliccare con il destro sul file appena creato ("[nome].ps1") e poi con il sinistro su "Esegui con PowerShell"
