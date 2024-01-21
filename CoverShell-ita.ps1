@@ -159,7 +159,7 @@ $PanelT11.Controls.Add($Label113)
 $Button113 = New-Object System.Windows.Forms.Button
 $Button113.Location = New-Object System.Drawing.Point(20,170)
 $Button113.Size = New-Object System.Drawing.Size(200,45)
-$Button113.Text = "Msconfig*"
+$Button113.Text = "Msconfig *"
 $Button113.Font = "Verdana, 11"
 $Button113.BackColor = "#101c28"
 $PanelT11.Controls.Add($Button113)
@@ -181,7 +181,7 @@ $PanelT11.Controls.Add($Label114)
 $Button114 = New-Object System.Windows.Forms.Button
 $Button114.Location = New-Object System.Drawing.Point(430,170)
 $Button114.Size = New-Object System.Drawing.Size(200,45)
-$Button114.Text = "Monitor delle risorse*"
+$Button114.Text = "Monitor delle risorse *"
 $Button114.Font = "Verdana, 11"
 $Button114.BackColor = "#101c28"
 $PanelT11.Controls.Add($Button114)
@@ -308,7 +308,7 @@ $PanelT12.Controls.Add($Label121)
 $Button121 = New-Object System.Windows.Forms.Button
 $Button121.Location = New-Object System.Drawing.Point(20,65)
 $Button121.Size = New-Object System.Drawing.Size(200,45)
-$Button121.Text = "Riavvia al BIOS/UEFI*"
+$Button121.Text = "Riavvia al BIOS/UEFI *"
 $Button121.Font = "Verdana, 11"
 $Button121.BackColor = "#101c28"
 $PanelT12.Controls.Add($Button121)
@@ -334,7 +334,7 @@ $PanelT12.Controls.Add($Label122)
 $Button122 = New-Object System.Windows.Forms.Button
 $Button122.Location = New-Object System.Drawing.Point(430,65)
 $Button122.Size = New-Object System.Drawing.Size(200,45)
-$Button122.Text = "Diagnostica memoria*"
+$Button122.Text = "Diagnostica memoria *"
 $Button122.Font = "Verdana, 11"
 $Button122.BackColor = "#101c28"
 $PanelT12.Controls.Add($Button122)
@@ -444,7 +444,7 @@ $PanelT12.Controls.Add($Label127)
 $Button127 = New-Object System.Windows.Forms.Button
 $Button127.Location = New-Object System.Drawing.Point(20,380)
 $Button127.Size = New-Object System.Drawing.Size(200,45)
-$Button127.Text = "Check up del disco*"
+$Button127.Text = "Check up del disco *"
 $Button127.Font = "Verdana, 11"
 $Button127.BackColor = "#101c28"
 $PanelT12.Controls.Add($Button127)
@@ -471,7 +471,7 @@ $PanelT12.Controls.Add($Label128)
 $Button128 = New-Object System.Windows.Forms.Button
 $Button128.Location = New-Object System.Drawing.Point(430,390)
 $Button128.Size = New-Object System.Drawing.Size(200,45)
-$Button128.Text = "Controllo sistema operativo*"
+$Button128.Text = "Controllo sistema operativo *"
 $Button128.Font = "Verdana, 11"
 $Button128.BackColor = "#101c28"
 $PanelT12.Controls.Add($Button128)
@@ -871,7 +871,7 @@ $PanelT21.Controls.Add($Label214)
 $Button214 = New-Object System.Windows.Forms.Button
 $Button214.Location = New-Object System.Drawing.Point(430,170)
 $Button214.Size = New-Object System.Drawing.Size(200,45)
-$Button214.Text = "Riavvia adattatore di rete*"
+$Button214.Text = "Riavvia adattatore di rete *"
 $Button214.Font = "Verdana, 11"
 $Button214.BackColor = "#101c28"
 $PanelT21.Controls.Add($Button214)
@@ -900,7 +900,7 @@ $PanelT21.Controls.Add($Label215)
 $Button215 = New-Object System.Windows.Forms.Button
 $Button215.Location = New-Object System.Drawing.Point(60,275)
 $Button215.Size = New-Object System.Drawing.Size(200,45)
-$Button215.Text = "Svuota ARP table*"
+$Button215.Text = "Svuota ARP table *"
 $Button215.Font = "Verdana, 11"
 $Button215.BackColor = "#101c28"
 $PanelT21.Controls.Add($Button215)
@@ -1867,9 +1867,9 @@ $PanelT32.Controls.Add($textBox322)
 # Create maximum size settings
 $Label326 = New-Object System.Windows.Forms.Label
 $Label326.Font = "Verdana, 11"
-$Label326.Location = New-Object System.Drawing.Point(350,357)
-$Label326.Size = New-Object System.Drawing.Size(200,20)
-$Label326.Text = "Dimensione max. (byte):"
+$Label326.Location = New-Object System.Drawing.Point(355,357)
+$Label326.Size = New-Object System.Drawing.Size(195,20)
+$Label326.Text = "Dimensione max (byte):"
 $PanelT32.Controls.Add($Label326)
 
 $textBox323 = New-Object System.Windows.Forms.TextBox
@@ -2877,8 +2877,8 @@ $Label34s.Size = New-Object System.Drawing.Size (275,20)
 $PanelT34.Controls.Add($Label34s)
 
 $Label343 = New-Object System.Windows.Forms.Label
-$Label343.Text = "Con questa funzione si può CANCELLARE TUTTO IL CONTENUTO del volume, FORMATTARLO
-al medesimo file system (FAT, NTFS, etc.) e SOVRASCRIVERE tutto lo spazio con dati random
+$Label343.Text = "Con questa funzione si CANCELLA TUTTO IL CONTENUTO del volume, lo si FORMATTA al
+medesimo file system (FAT, NTFS, etc.) e si SOVRASCRIVE tutto lo spazio con dati random
 (usando il comando 'cipher/w:'), così da rendere più difficile il recupero dei dati."
 $Label343.Font = "Verdana, 11"
 $Label343.Location = New-Object System.Drawing.Point(10,440)

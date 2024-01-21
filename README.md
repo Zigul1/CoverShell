@@ -9,11 +9,16 @@ Tested succesfully using **PowerShell 5.1** on **Windows 10 Pro**.
 
 ### USE
 
-- Copy all the raw text of the script "CoverShell.ps1" and paste it in a new notepad file
-- save it and give it a .ps1 extension
+A)
+- Download the repository in .zip format and then extract it in a folder
+OR
+- copy all the raw text of the script "CoverShell.ps1" and paste it in a new notepad file, save it and give it a .ps1 extension
+B)
 - set a compatible execution policy with the PowerShell command: `set-execution policy -scope CurrentUser RemoteSigned` (or use the "bypass" one)
-- right-click on the file just created ("[name].ps1") and then left-click on "Run with PowerShell"
-- the shell will appear for a moment, then it will minimize itself and you will see the GUI, in the background of already opened windows.
+- right-click on the .ps1 file and then left-click on "Run with PowerShell"
+C)
+- the shell will appear for a moment, then it will minimize itself and you will see the GUI, in the background of already opened windows
+- to close the application, just close the CoverShell window or close the Powershell one minimized
 
 [optional]
 - if you want to make it an executable file (.exe), you can use [PS2EXE](https://github.com/MScholtes/PS2EXE) or similar applications.
@@ -50,14 +55,21 @@ There are commands for:
 
 CoverShell è un'interfaccia grafica per PowerShell per eseguire comandi e script utili, senza bisogno di ricordarli a memoria o copia-incollarli dagli appunti alla shell. Realizzato con Windows Form, può essere arricchito aggiungendo altri tab e pannelli.
 
+Testato con successo usando **PowerShell 5.1** su **Windows 10 Pro**.
+
 
 ### USO
 
-- Copiare tutto il contenuto "raw" dello script "CoverShell-ita.ps1" e incollarlo in un nuovo documento di testo
-- salvarlo e dargli come estensione .ps1
+A)
+- Scaricare il repository in formato .zip ed estrarlo in una cartella
+OPPURE
+- copiare tutto il contenuto "raw" dello script "CoverShell-ita.ps1" e incollarlo in un nuovo documento di testo, salvarlo e dargli come estensione .ps1
+B)
 - impostare una execution policy adeguata usando il comando PowerShell `set-execution policy -scope CurrentUser RemoteSigned` (oppure usare quella "bypass")
-- cliccare con il destro sul file appena creato ("[nome].ps1") e poi con il sinistro su "Esegui con PowerShell"
-- la shell comparirà per un momento, poi si ridurrà ad icona e comparirà la GUI, in background rispetto alle finestre già aperte.
+- cliccare con il destro sul file .ps1 e poi con il sinistro su "Esegui con PowerShell"
+C)
+- la shell apparirà per un momento, poi si ridurrà ad icona e comparirà la GUI, in background rispetto alle finestre già aperte
+- per chiudere l'applicazione, è sufficiente chiudere la finestra di CoverShell o quella minimizzata di PowerShell.
 
 [opzionale]
 - per renderlo un eseguibile (.exe) è possibile usare [PS2EXE](https://github.com/MScholtes/PS2EXE) o applicazioni simili.
@@ -74,3 +86,4 @@ Ci sono comandi per:
 - dividere/unire *file* al livello di *bit*, invertire 0 e 1, attuare rotazione circolare dei *bit* verso sinistra
 - controllare l'*hash* dei *file*, generare *password*, ricorrere a *scanner online* per controllo *malware* e sanificare volumi.
 
+Per ulteriori info: https://www.turbolab.it/4039
