@@ -4,7 +4,7 @@ Una GUI (basata su Windows Form) per eseguire alcuni utili comandi e funzioni in
 .DESCRIPTION
 Una interfaccia grafica mostrerà pulsanti, campi da compilare e menu a tendina per velocizzare molte operazioni, come: controllare le performance dell'host e della rete, comparare e ricercare file nelle cartelle, dividere file, creare password, ricorrere a scanner online per virus, sanificare volumi, etc.
 .LINK
-
+https://github.com/Zigul1/CoverShell
 #>
 
 # Load the .NET System.Windows.Forms class

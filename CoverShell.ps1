@@ -4,7 +4,7 @@ A GUI (based on Windows Form) to execute some useful PowerShell functions and co
 .DESCRIPTION
 A graphical interface will show buttons, input fields and drop-down menus to speed up many tasks, like: check host and network performances, compare and search files in folders, split files, create passwords, check online virus scanners, sanitize volumes, etc. 
 .LINK
-
+https://github.com/Zigul1/CoverShell
 #>
 
 # Load the .NET System.Windows.Forms class
