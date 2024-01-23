@@ -10,14 +10,12 @@ Tested succesfully using **PowerShell 5.1** and **PowerShell 7.4** on **Windows 
 
 1.
 - Download the repository in .zip format and then extract it in a folder
->OR
-- copy all the raw text of the script "CoverShell.ps1" and paste it in a new notepad file, save it and give it a .ps1 extension
 2.
 - set a compatible execution policy with the PowerShell command: `set-execution policy -scope CurrentUser RemoteSigned` (or use the "bypass" one)
 - right-click on the .ps1 file and then left-click on "Run with PowerShell"
-3.
 - the shell will appear for a moment, then it will minimize itself and you will see the GUI, in the background of already opened windows
-- to close the application, just close the CoverShell window or close the Powershell one minimized
+3.
+- to close the application, just close the CoverShell window or the Powershell one minimized
 
 [optional]
 - if you want to make it an executable file (.exe), you can use [PS2EXE](https://github.com/MScholtes/PS2EXE) or similar applications.
@@ -61,13 +59,11 @@ Testato con successo usando **PowerShell 5.1** e **PowerShell 7.4** su **Windows
 
 1.
 - Scaricare il *repository* in formato .zip ed estrarlo in una cartella
->OPPURE
-- copiare tutto il contenuto "*raw*" dello *script* "CoverShell-ita.ps1" e incollarlo in un nuovo documento di testo, salvarlo e dargli come estensione .ps1
 2.
 - impostare una *execution policy* adeguata usando il comando PowerShell `set-execution policy -scope CurrentUser RemoteSigned` (oppure usare quella "*bypass*")
 - cliccare con il destro sul file .ps1 e poi con il sinistro su "Esegui con PowerShell"
-3.
 - la *shell* apparirà per un momento, poi si ridurrà ad icona e comparirà la GUI, in *background* rispetto alle finestre già aperte
+3.
 - per chiudere l'applicazione, è sufficiente chiudere la finestra di CoverShell o quella minimizzata di PowerShell.
 
 [opzionale]
