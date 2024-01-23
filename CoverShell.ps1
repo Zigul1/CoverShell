@@ -1208,7 +1208,7 @@ $PanelT23.Controls.Add($ButtonST3b)
 $ButtonST3b.Add_Click({
     $textBox232a.Text = "Please wait..."
     if (!$textBox232b.Text) {
-        $textBox232a.Text = "Select interval"
+        $textBox232a.Text = "Select capture duration"
         return
     }
     if ($textBox232b.Text -match "^[0-2]?[0-9][1-9]?$" -and $textBox232b.Text -ne 0,00,000) {
@@ -1490,7 +1490,7 @@ $ButtonFID.Add_Click({
              $textBox3ID.Text = "The two SHA1 differ: `r`n$($1sha1) `r`n$($2sha1)" | Out-String
         }
     } else {
-        $textBox3ID.Text = "Scegliere i file"
+        $textBox3ID.Text = "Choose files"
     }
 })
 

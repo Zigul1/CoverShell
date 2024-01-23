@@ -1209,7 +1209,7 @@ $PanelT23.Controls.Add($ButtonST3b)
 $ButtonST3b.Add_Click({
     $textBox232a.Text = "Attendere..."
     if (!$textBox232b.Text) {
-        $textBox232a.Text = "Seleziona intervallo"
+        $textBox232a.Text = "Seleziona durata"
         return
     }
     if ($textBox232b.Text -match "^[0-2]?[0-9][1-9]?$" -and $textBox232b.Text -ne 0,00,000) {
