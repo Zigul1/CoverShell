@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS
-A GUI (based on Windows Form) to execute some useful PowerShell functions and commands.
+A GUI (based on Windows Forms) to execute some useful PowerShell functions and commands.
 .DESCRIPTION
 A graphical interface will show buttons, input fields and drop-down menus to speed up many tasks, like: check host and network performances, compare and search files in folders, split files, create passwords, check online virus scanners, sanitize volumes, etc. 
 .LINK
@@ -46,7 +46,7 @@ $main_form.Controls.Add($LabelC)
 
 # Create Label for "version"
 $LabelV = New-Object System.Windows.Forms.Label
-$LabelV.Text = "v. 1.0.0"
+$LabelV.Text = "v. 1.0.1"
 $LabelV.Font = "Verdana, 9"
 $LabelV.Location = New-Object System.Drawing.Point(850,625)
 $LabelV.ForeColor = "#ffffff"
@@ -682,10 +682,10 @@ $ButtonST.Add_Click({
                 $textBox136.text = "$(date | Out-String)$($found)" 
                 sleep $textBox133.Text
             } else {
-                continue
+                return
             }
         } else {
-            continue
+            return
         }
     }
 })
@@ -1249,16 +1249,6 @@ $textBox233.BackColor = "#071c3b"
 $textBox233.ForeColor = "#ffffff"
 $PanelT23.Controls.Add($textBox233)
 
-# Create a "Please wait..." label to introduce the Panel 3 third action
-$Label235 = New-Object System.Windows.Forms.Label
-$Label235.Text = "Please wait..."
-$Label235.Backcolor = "#071c3b"
-$Label235.Font = "Verdana, 11"
-$Label235.Location = New-Object System.Drawing.Point(500,314)
-$Label235.AutoSize = $true
-$Label235.Visible = $false
-$PanelT23.Controls.Add($Label235)
-
 $ButtonST3c = New-Object System.Windows.Forms.Button
 $ButtonST3c.Location = New-Object System.Drawing.Point(10,305)
 $ButtonST3c.Size = New-Object System.Drawing.Size(130,40)
@@ -1268,7 +1258,6 @@ $ButtonST3c.BackColor = "#101c28"
 $PanelT23.Controls.Add($ButtonST3c)
 
 $ButtonST3c.Add_Click({
-    #$Label235.Visible = $true
     $textBox233.Text = "Please wait..."
     $ip = for ($i = 1 ; $i -le 254 ; $i++) {
                         ping -n 1 -w 100 192.168.1.$i | findstr "TTL"
@@ -1276,7 +1265,6 @@ $ButtonST3c.Add_Click({
     $dins = ($ip | Select-String -Pattern "(?:[0-9]{1,3}\.){3}[0-9]{1,3}" | ForEach-Object {$_.Matches[0..254].Value})
     $swp = ForEach ($ipdns in $dins) {Resolve-DnsName $ipdns 2> $null | ft Type,@{n="IP";e={$ipdns}},NameHost}
     $textBox233.Text = $dins + $swp | Out-String
-    #$Label235.Visible = $false
 })
 
 # Add event handler to handle click events for the Labels
@@ -1493,12 +1481,16 @@ $PanelT31.Controls.Add($textBox3ID)
 
 $ButtonFID.Add_Click({
     $textBox3ID.Text = "Please wait..."
-    $1sha1 = (Get-FileHash -Path $($SelectedPath2) -Algorithm SHA1).hash
-    $2sha1 = (Get-FileHash -Path $($SelectedPath1) -Algorithm SHA1).hash
-    If ($1sha1 -eq $2sha1) {
+    if ($SelectedPath1 -or $SelectedPath2 -eq "") {
+        $1sha1 = (Get-FileHash -Path $($SelectedPath2) -Algorithm SHA1).hash
+        $2sha1 = (Get-FileHash -Path $($SelectedPath1) -Algorithm SHA1).hash
+        If ($1sha1 -eq $2sha1) {
              $textBox3ID.Text = "The SHA1 is the same: $($1sha1)" | Out-String
-    } else {
+        } else {
              $textBox3ID.Text = "The two SHA1 differ: `r`n$($1sha1) `r`n$($2sha1)" | Out-String
+        }
+    } else {
+        $textBox3ID.Text = "Scegliere i file"
     }
 })
 
@@ -1600,37 +1592,42 @@ $textBox3IDf.ForeColor = "#ffffff"
 $PanelT31.Controls.Add($textBox3IDf)
 
 $ButtonFIDf.Add_Click({
-    $textBox3IDf.Text = "Please wait..."
-    $files1 = Get-ChildItem "$($Label3Ff1.Text)" -Recurse
-    $files2 = Get-ChildItem "$($Label3Ff2.Text)" -Recurse
-    $files1f = Get-ChildItem "$($Label3Ff1.Text)"
-    $files2f = Get-ChildItem "$($Label3Ff2.Text)"
-    $textBox3IDf.Text = "`nFILES MODIFIED (same name, different data), if present:"
-    foreach ($file1f in $files1f) {
-             $file2f = $files2f | Where-Object {$_.Name -eq $file1f.Name} 
-             if ($file2f -ne $null) {
-                 $hash1f = Get-FileHash $file1f.FullName | Select-Object -ExpandProperty Hash 
-                 $hash2f = Get-FileHash $file2f.FullName | Select-Object -ExpandProperty Hash
-                 if ($hash1f -ne $hash2f) {
-                     $textBox3IDf.Text += "`r`nThe file $($file1f.FullName) and `r`n the file $($file2f.FullName) have different content" | Out-String
+    if ($Label3Ff1.Text -and $Label3Ff2.Text -ne "") {
+        $textBox3IDf.Text = "Please wait..."
+        $files1 = Get-ChildItem "$($Label3Ff1.Text)" -Recurse
+        $files2 = Get-ChildItem "$($Label3Ff2.Text)" -Recurse
+        $files1f = Get-ChildItem "$($Label3Ff1.Text)"
+        $files2f = Get-ChildItem "$($Label3Ff2.Text)"
+        $textBox3IDf.Text = "`nMODIFIED FILES (same name, different data), il present:"
+        foreach ($file1f in $files1f) {
+                 $file2f = $files2f | Where-Object {$_.Name -eq $file1f.Name} 
+                 if ($file2f -ne $null) {
+                     $hash1f = Get-FileHash $file1f.FullName | Select-Object -ExpandProperty Hash 
+                     $hash2f = Get-FileHash $file2f.FullName | Select-Object -ExpandProperty Hash
+                     if ($hash1f -ne $hash2f) {
+                         $textBox3IDf.Text += "`r`nThe file $($file1f.FullName) and `r`n the file $($file2f.FullName) have different content" | Out-String
+                     }
                  }
-             }
-    }
-    foreach ($file1 in $files1) {
-             $file2 = $files2 | Where-Object {$_.Name -eq $file1.Name -and $_.Directory.Name -eq $file1.Directory.Name} 
-             if ($file2 -ne $null) {
-                 $hash1 = Get-FileHash $file1.FullName | Select-Object -ExpandProperty Hash 
-                 $hash2 = Get-FileHash $file2.FullName | Select-Object -ExpandProperty Hash
-                 if ($hash1 -ne $hash2) {
-                     $textBox3IDf.Text += "`r`nThe file $($file1.FullName) and `r`n the file $($file2.FullName) have different content" | Out-String
+        }
+        foreach ($file1 in $files1) {
+                 $file2 = $files2 | Where-Object {$_.Name -eq $file1.Name -and $_.Directory.Name -eq $file1.Directory.Name} 
+                 if ($file2 -ne $null) {
+                     $hash1 = Get-FileHash $file1.FullName | Select-Object -ExpandProperty Hash 
+                     $hash2 = Get-FileHash $file2.FullName | Select-Object -ExpandProperty Hash
+                     if ($hash1 -ne $hash2) {
+                         $textBox3IDf.Text += "`r`nThe file $($file1.FullName) and `r`n the file $($file2.FullName) have different content" | Out-String
+                     }
                  }
-             }
+        }
+        $textBox3IDf.Text += "`r`n `r`nUNIQUE FILES (if present):`r`n"
+        foreach ($single in (Compare-Object -ReferenceObject $files1 -DifferenceObject $files2 -PassThru)) {
+            $singlelist += "`r$($single.fullname)" | Out-String
+        }
+        $textBox3IDf.Text += $singlelist
+    } else {
+        $textBox3IDf.Text = "Choose folders"
+        return
     }
-    $textBox3IDf.Text += "`r`n `r`nUNIQUE FILES (if present):`r`n"
-    foreach ($single in (Compare-Object -ReferenceObject $files1 -DifferenceObject $files2 -PassThru)) {
-        $singlelist += "`r$($single.fullname)" | Out-String
-    }
-    $textBox3IDf.Text += $singlelist
 })
 
 
@@ -2757,6 +2754,9 @@ $ButtonP.BackColor = "#101c28"
 $PanelT34.Controls.Add($ButtonP)
 
 $ButtonP.Add_Click({
+    if (!$ComboBoxP.SelectedItem) {
+        return
+    }
     $pswdl = $ComboBoxP.SelectedItem
     $chmin = [char](Get-Random -Minimum 97 -Maximum 122)
     $chmai = [char](Get-Random -Minimum 65 -Maximum 90)
@@ -3066,7 +3066,11 @@ $panelTS.Controls.Add($TextBox0S)
 #set the output in the textbox (using the user input from the previsous box) 
 $Button0S.Add_Click({
     $TextBox0S.Text = "Please wait..."
-    $TextBox0S.Text = iex($textBoxs.Text) | Out-String
+    try {
+        $TextBox0S.Text = iex($textBoxs.Text) | Out-String
+    } catch {
+        $TextBox0S.Text = "Insert a valid command"
+    }
 })
 
 # Add event handler to handle click events for the tabs
