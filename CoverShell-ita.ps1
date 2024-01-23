@@ -1148,7 +1148,7 @@ $PanelT23.Controls.Add($textBox231)
 $ButtonST3a = New-Object System.Windows.Forms.Button
 $ButtonST3a.Location = New-Object System.Drawing.Point(10,25)
 $ButtonST3a.Size = New-Object System.Drawing.Size(130,40)
-$ButtonST3a.Text = "AVVIO*"
+$ButtonST3a.Text = "AVVIO *"
 $ButtonST3a.Font = "Verdana, 11"
 $ButtonST3a.BackColor = "#101c28"
 $PanelT23.Controls.Add($ButtonST3a)
@@ -1201,7 +1201,7 @@ $PanelT23.Controls.Add($textBox232a)
 $ButtonST3b = New-Object System.Windows.Forms.Button
 $ButtonST3b.Location = New-Object System.Drawing.Point(10,135)
 $ButtonST3b.Size = New-Object System.Drawing.Size(130,40)
-$ButtonST3b.Text = "CATTURA*"
+$ButtonST3b.Text = "CATTURA *"
 $ButtonST3b.Font = "Verdana, 11"
 $ButtonST3b.BackColor = "#101c28"
 $PanelT23.Controls.Add($ButtonST3b)
