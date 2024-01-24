@@ -46,7 +46,7 @@ $main_form.Controls.Add($LabelC)
 
 # Create Label for "version"
 $LabelV = New-Object System.Windows.Forms.Label
-$LabelV.Text = "v. 1.0.1"
+$LabelV.Text = "v. 1.0.2"
 $LabelV.Font = "Verdana, 9"
 $LabelV.Location = New-Object System.Drawing.Point(850,625)
 $LabelV.ForeColor = "#ffffff"
@@ -1212,13 +1212,14 @@ $ButtonST3b.Add_Click({
         $textBox232a.Text = "Seleziona durata"
         return
     }
-    if ($textBox232b.Text -match "^[0-2]?[0-9][1-9]?$" -and $textBox232b.Text -ne 0,00,000) {
-           netsh trace start capture=yes report=yes correlation=yes capturetype=both tracefile=C:\NetTrace.etl
-           $textBox232a.Text = "Attendere il messaggio 'cattura completata'..." | Out-String ; sleep $textBox232b.Text
-           netsh trace stop ; tracerpt C:\NetTrace.etl -o C:\captlogs.csv -of csv
-           $textBox232a.Text = "CATTURA COMPLETATA. `r`n Se eseguito da admin, in C:\ ora ci sono: `r`n - il file compresso 'NetTrace.cab' contenente 'report.html' `r`n - il file 'NetTrace.etl' (da aprire in EventViewer, o ancor meglio usando Networkminer o NetwokMonitor, se installati) con i pacchetti catturati `r`n - il file 'captlogs.csv' (NetTrace.etl in formato differente)" | Out-String
+    if ($textBox232b.Text -match "^-?\d+$" -and [int16]$textBox232b.Text -gt 1 -and [int16]$textBox232b.Text -le 300) {
+       netsh trace start capture=yes report=yes correlation=yes capturetype=both tracefile=C:\NetTrace.etl
+       $textBox232a.Text = "Attendere il messaggio 'cattura completata'..." | Out-String ; sleep $textBox232b.Text
+       netsh trace stop ; tracerpt C:\NetTrace.etl -o C:\captlogs.csv -of csv
+       $textBox232a.Text = "CATTURA COMPLETATA. `r`n Se eseguito da admin, in C:\ ora ci sono: `r`n - il file compresso 'NetTrace.cab' contenente 'report.html' `r`n - il file 'NetTrace.etl' (da aprire in EventViewer, o ancor meglio usando Networkminer o NetwokMonitor, se installati) con i pacchetti catturati `r`n - il file 'captlogs.csv' (NetTrace.etl in formato differente)" | Out-String
     } else {
-           $textBox232a.Text = "Inserirer solo numeri da 1 a 300" | Out-String ; break
+       $textBox232a.Text = "Inserire solo numeri da 1 a 300" | Out-String
+       return
     }
 })
 
