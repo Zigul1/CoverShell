@@ -46,7 +46,7 @@ $main_form.Controls.Add($LabelC)
 
 # Create Label for "version"
 $LabelV = New-Object System.Windows.Forms.Label
-$LabelV.Text = "v. 1.0.2"
+$LabelV.Text = "v. 1.0.3"
 $LabelV.Font = "Verdana, 9"
 $LabelV.Location = New-Object System.Drawing.Point(850,625)
 $LabelV.ForeColor = "#ffffff"
@@ -55,7 +55,7 @@ $main_form.Controls.Add($LabelV)
 
 
 
-###### T A B 1 
+###### T A B 1
 
 # Create Label for TAB1
 $LabelT1 = New-Object System.Windows.Forms.Label
@@ -210,7 +210,7 @@ $PanelT11.Controls.Add($Button115)
 
 # Assign an action to Button5
 $Button115.Add_Click({
-    C:\Windows\system32\perfmon.exe 
+    C:\Windows\system32\perfmon.exe
 })
 
 # Create a Label to introduce the Button6 action
@@ -407,7 +407,7 @@ $PanelT12.Controls.Add($Button125)
 
 # Assign an action to Button5
 $Button125.Add_Click({
-    C:\WINDOWS\System32\wscui.cpl 
+    C:\WINDOWS\System32\wscui.cpl
 })
 
 # Create a Label to introduce the Button6 action
@@ -453,7 +453,7 @@ $PanelT12.Controls.Add($Button127)
 $Button127.Add_Click({
     $answerC = [System.Windows.Forms.MessageBox]::Show( "Vuoi eseguire 'chkdsk C: /r'?", "Conferma comando", "YesNo", "Warning" )
     if ($answerC -eq "Yes") {
-        Start powershell ; $wshell = New-Object -ComObject wscript.shell; $wshell.AppActivate('powershell.exe'); Sleep 1; $wshell.SendKeys("chkdsk C: /r")
+        Start-Process powershell ; $wshell = New-Object -ComObject wscript.shell; $wshell.AppActivate('powershell.exe'); Start-Sleep 1; $wshell.SendKeys("chkdsk C: /r")
     } elseif ($answerC -eq "No") {
     }
 })
@@ -480,7 +480,7 @@ $PanelT12.Controls.Add($Button128)
 $Button128.Add_Click({
     $answerD = [System.Windows.Forms.MessageBox]::Show( "Vuoi eseguire 'sfc /scannow' e poi 'DISM.exe /Online /Cleanup-image /Restorehealth'?", "Conferma comando", "YesNo", "Warning" )
     if ($answerD -eq "Yes") {
-        Start powershell ; $wshell = New-Object -ComObject wscript.shell; $wshell.AppActivate('powershell.exe'); Sleep 1; $wshell.SendKeys("sfc /scannow ; DISM.exe /Online /Cleanup-image /Restorehealth")
+        Start-Process powershell ; $wshell = New-Object -ComObject wscript.shell; $wshell.AppActivate('powershell.exe'); Start-Sleep 1; $wshell.SendKeys("sfc /scannow ; DISM.exe /Online /Cleanup-image /Restorehealth")
     } elseif ($answerD -eq "No") {
     }
 })
@@ -529,7 +529,7 @@ $Label130 = New-Object System.Windows.Forms.Label
 $Label130.Text = "Si può impostare un comando da eseguire ad un intervallo personalizzato e controllare se il suo
 output contiene una determinata stringa. Ogni presenza della stringa nell'ouput sarà salvata in
 un file di log, assieme a data ed ora dell'evento.
-Assomiglia al comando 'watch' in Linux e può essere usato, ad esempio, per monitorare un 
+Assomiglia al comando 'watch' in Linux e può essere usato, ad esempio, per monitorare un
 processo ('ps'), connessioni ('netstat -noa'), file di log ('cat [file] -last 10') o i risultati del
 comando ping."
 $Label130.Font = "Verdana, 11"
@@ -548,7 +548,7 @@ $textBox131 = New-Object System.Windows.Forms.TextBox
 $textBox131.Location = New-Object System.Drawing.Point(20,173)
 $textBox131.Size = New-Object System.Drawing.Size(700,20)
 $textBox131.Font = "Verdana, 11"
-$textBox131.BackColor = "#1d1e25" #101c28 
+$textBox131.BackColor = "#1d1e25"
 $textBox131.ForeColor = "#ffffff"
 $textBox131.Add_GotFocus({ $textBox131.BackColor = "#000000" })
 $textBox131.Add_LostFocus({ $textBox131.BackColor = "#1d1e25" })
@@ -678,10 +678,10 @@ $ButtonST.Add_Click({
             if ($outp | findstr $textBox132.Text) {
                 $found = $outp | findstr $textBox132.Text | Out-String
                 $log = $textBox135.Text + '\\eventlist.txt'
-                "$(date | Out-String)$($found)" | tee $log -Append
+                "$(Get-Date | Out-String)$($found)" | Tee-Object $log -Append
                 $Label137.Text = " $($i) / $($textBox134.Text)"
-                $textBox136.text = "$(date | Out-String)$($found)" 
-                sleep $textBox133.Text
+                $textBox136.text = "$(Get-Date | Out-String)$($found)" 
+                Start-Sleep $textBox133.Text
             } else {
                 return
             }
@@ -693,7 +693,7 @@ $ButtonST.Add_Click({
 
 # Add event handler to handle click events for the Labels
 $Label_Click1 = {
-    param($sender, $e)
+    param($sender)
     $clickedLabel = $sender
     if ($clickedLabel -eq $LabelT11) {
         $PanelT11.Visible = $true
@@ -712,7 +712,7 @@ $Label_Click1 = {
 
 # Set the label indicator when its panel is active
 $Label_ClickX1 = {
-    param($sender, $e)
+    param($sender)
     $clickedLabel = $sender
     if ($clickedLabel -eq $LabelT11) {
         $Label1_1.Visible = $true
@@ -740,7 +740,7 @@ $LabelT13.Add_Click($Label_ClickX1)
 
 
 
-###### T A B 2 
+###### T A B 2
 
 # Create Label for TAB2
 $LabelT2 = New-Object System.Windows.Forms.Label
@@ -880,12 +880,12 @@ $PanelT21.Controls.Add($Button214)
 $Button214.Add_Click({
     $textBox211.Text = "Attendere..."
     $net = Get-NetConnectionProfile | findstr InterfaceAlias ; $net = $net.substring(27)
-    $netrestart = try {
+    try {
         Restart-NetAdapter -name $net -erroraction stop
         $textBox211.Text = "Fatto"
-        } catch {
-            $textBox211.Text = "Per riavviare l'adattatore di rete devi essere admin"
-        }
+    } catch {
+        $textBox211.Text = "Per riavviare l'adattatore di rete devi essere admin"
+    }
 })
 
 # Create a Label to introduce the Button5 action
@@ -998,8 +998,8 @@ $PanelT22.Controls.Add($textBox221)
 
 $ButtonST2.Add_Click({
     $textBox221.Text = "Attendere..."
-    $gw = (Get-NetIPConfiguration | Foreach IPv4DefaultGateway) ; $gwy = $gw.nexthop
-    $dn = (Get-NetIPConfiguration | Foreach DNSServer | findstr "IPv4" | findstr ",")
+    $gw = (Get-NetIPConfiguration | ForEach-Object IPv4DefaultGateway) ; $gwy = $gw.nexthop
+    $dn = (Get-NetIPConfiguration | ForEach-Object DNSServer | findstr "IPv4" | findstr ",")
     $dns1 = (($dn.split("{")[1]).trimend("} ")).split(",")[0] ; $dns2 = ((($dn.split("{")[1]).trimend("} ")).split(",")[1]).trimstart(" ")
     $dhcp = ipconfig /all | Select-String -pattern "(DHCP server|server DHCP)"
     #set output variables
@@ -1013,7 +1013,6 @@ $ButtonST2.Add_Click({
         } else {
         "`nPing 8.8.8.8: NO`n`n" | Out-String
         }
-    
     $out3a = nslookup myip.opendns.com. resolver1.opendns.com | Select-Object -Index 4 -OutVariable P_IP # NOT WORKING WITH "FORCED DNS" (PORTMASTER, ETC.)
     $out3b = try {
                     $P_IP.substring($P_IP.length -16)
@@ -1021,7 +1020,6 @@ $ButtonST2.Add_Click({
                  "ignoto (problema con DNS, utilizzo di un DNS forzato o host offline)"
              }
     $out3 = "`nPublic IP: $($out3b)" | Out-String
-    
     $out4a = try {
                 $tdns = Resolve-DnsName www.google.com -server $dns1 -erroraction stop
                 "OK "
@@ -1035,7 +1033,6 @@ $ButtonST2.Add_Click({
                 "NO "
              }
     $out4 = "DNS: $($dns1) $($out4a)- $($dns2) $($out4b)`n`n" | Out-String
-                
     $out5a = try {
                   (($dhcp.tostring()).split(":")[1]).trimstart("")
              } catch {
@@ -1045,20 +1042,18 @@ $ButtonST2.Add_Click({
                     if (ping -n 1 (($dhcp.tostring()).split(":")[1]).trimstart("") | findstr "TTL") {
                         "OK"
                         } else {
-                            "NO (ma potrebbe essere OK, se sei su una VM host usando VirtualBox, VMware o simili)"
+                            "NO (ma potrebbe essere OK, se sei su una VM usando VirtualBox, VMware o simili)"
                     }
              } catch {
-                " server non impostato o host offline"
+                " server non impostato, host offline o molteplici indirizzi DHCP dovuti alle VM"
              }
     $out5 = "`n`nDHCP server: $($out5a) - server raggiungibile? $($out5b)" | Out-String
-                
     $out6a = try {
-                        $net = Get-NetConnectionProfile | findstr InterfaceAlias ; $net = $net.substring(27) ; "$net " ; $inf = (Get-NetAdapter -name $net | select linkspeed) ; "-  linkspeed=$($inf.linkspeed) - VlanID=$($inf.vlanid)"
+                        $net = Get-NetConnectionProfile | findstr InterfaceAlias ; $net = $net.substring(27) ; "$net " ; $inf = (Get-NetAdapter -name $net | Select-Object linkspeed) ; "-  linkspeed=$($inf.linkspeed) - VlanID=$($inf.vlanid)"
              } catch {
                     "nessuna connessione internet"
              }
     $out6 = "`n`nNome rete: $($out6a)"  | Out-String
-    
     $out7a = try {
                     $ipa = (Get-NetIPAddress -AddressFamily IPV4 -interfacealias $net).IPAddress
                     if ($ipa -match "^169.254.*.*$") {
@@ -1069,9 +1064,7 @@ $ButtonST2.Add_Click({
              } catch {
                         "non connesso a una rete"
              }
-                    
     $out7 = "`n`nHost IP address: $($out7a)" | Out-String
-    
     $out8a = $names = @(); $names = (Get-NetFirewallProfile).name
              $values = @(); $v = (Get-NetFirewallProfile).enabled
              Foreach ($d in $v){
@@ -1080,9 +1073,8 @@ $ButtonST2.Add_Click({
     $out8b = "`n`nWindows firewall:"
     $out8c = "$($names)"
     $out8d = "$($values)" | Out-String
-    
-    $out9a = Get-Service -Name "*DHCP*","*DNS*","VSS","TermService","ssh-agent","MyWiFiDHCPDNS","gpsvc","fhsvc","defragsvc","BDESVC","UserManager","StorSvc","Spooler","SecurityHealthService","Schedule","hvsics","HvHost","hns","EventLog","DPS" -erroraction SilentlyContinue | sort status,name,displayname | 
-                    ForEach ($_.status) {
+    $out9a = Get-Service -Name "*DHCP*","*DNS*","VSS","TermService","ssh-agent","MyWiFiDHCPDNS","gpsvc","fhsvc","defragsvc","BDESVC","UserManager","StorSvc","Spooler","SecurityHealthService","Schedule","hvsics","HvHost","hns","EventLog","DPS" -erroraction SilentlyContinue | Sort-Object status,name,displayname |
+                    ForEach-Object ($_.status) {
                         if ($_.status -eq "running"){
                             "$($_.status) - $($_.name) - $($_.displayname)" | Out-String
                         } elseif ($_.status -eq "stopped") {
@@ -1092,7 +1084,6 @@ $ButtonST2.Add_Click({
                         }
                     }
     $out9 = "`n $($out9a)" | Out-String
-    
     $textBox221.Text = $out1,$out2,$out3,$out4,$out5,$out6,$out7,$out8b,$out8c,$out8d,"`n`nSERVICES (partial):",$out9 | Out-String
 })
 
@@ -1214,7 +1205,7 @@ $ButtonST3b.Add_Click({
     }
     if ($textBox232b.Text -match "^-?\d+$" -and [int16]$textBox232b.Text -gt 1 -and [int16]$textBox232b.Text -le 300) {
        netsh trace start capture=yes report=yes correlation=yes capturetype=both tracefile=C:\NetTrace.etl
-       $textBox232a.Text = "Attendere il messaggio 'cattura completata'..." | Out-String ; sleep $textBox232b.Text
+       $textBox232a.Text = "Attendere il messaggio 'cattura completata'..." | Out-String ; Start-Sleep $textBox232b.Text
        netsh trace stop ; tracerpt C:\NetTrace.etl -o C:\captlogs.csv -of csv
        $textBox232a.Text = "CATTURA COMPLETATA. `r`n Se eseguito da admin, in C:\ ora ci sono: `r`n - il file compresso 'NetTrace.cab' contenente 'report.html' `r`n - il file 'NetTrace.etl' (da aprire in EventViewer, o ancor meglio usando Networkminer o NetwokMonitor, se installati) con i pacchetti catturati `r`n - il file 'captlogs.csv' (NetTrace.etl in formato differente)" | Out-String
     } else {
@@ -1265,13 +1256,13 @@ $ButtonST3c.Add_Click({
                         ping -n 1 -w 100 192.168.1.$i | findstr "TTL"
                     }
     $dins = ($ip | Select-String -Pattern "(?:[0-9]{1,3}\.){3}[0-9]{1,3}" | ForEach-Object {$_.Matches[0..254].Value})
-    $swp = ForEach ($ipdns in $dins) {Resolve-DnsName $ipdns 2> $null | ft Type,@{n="IP";e={$ipdns}},NameHost}
+    $swp = ForEach ($ipdns in $dins) {Resolve-DnsName $ipdns 2> $null | Format-Table Type,@{n="IP";e={$ipdns}},NameHost}
     $textBox233.Text = $dins + $swp | Out-String
 })
 
 # Add event handler to handle click events for the Labels
 $Label_Click = {
-    param($sender, $e)
+    param($sender)
     $clickedLabel = $sender
     if ($clickedLabel -eq $LabelT21) {
         $PanelT21.Visible = $true
@@ -1290,7 +1281,7 @@ $Label_Click = {
 
 # Set the label indicator when its panel is active
 $Label_ClickX2 = {
-    param($sender, $e)
+    param($sender)
     $clickedLabel = $sender
     if ($clickedLabel -eq $LabelT21) {
         $Label2_1.Visible = $true
@@ -1318,7 +1309,7 @@ $LabelT23.Add_Click($Label_ClickX2)
 
 
 
-###### T A B 3 
+###### T A B 3
 
 # Create Label for TAB3
 $LabelT3 = New-Object System.Windows.Forms.Label
@@ -1408,7 +1399,7 @@ Function File ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
     $Global:SelectedFile1 = $OpenFileDialog.SafeFileName
@@ -1417,7 +1408,7 @@ Function File ($InitialDirectory)
 }
 
 $ButtonF1.Add_Click({
-    $Label3F1.Text = File    
+    $Label3F1.Text = File
 })
 
 # Second file selection
@@ -1451,17 +1442,16 @@ Function File2 ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
     $Global:SelectedFile2 = $OpenFileDialog.SafeFileName
     $Global:SelectedPath2 = $OpenFileDialog.FileName
     Return $SelectedFile2
-    #Return $SelectedPath
-} 
+}
 
 $ButtonF2.Add_Click({
-    $Label3F2.Text = File2   
+    $Label3F2.Text = File2
 })
 
 $ButtonFID = New-Object System.Windows.Forms.Button
@@ -1602,9 +1592,9 @@ $ButtonFIDf.Add_Click({
         $files2f = Get-ChildItem "$($Label3Ff2.Text)"
         $textBox3IDf.Text = "`nFILE MODIFICATI (stesso nome, dati diversi), se presenti:"
         foreach ($file1f in $files1f) {
-                 $file2f = $files2f | Where-Object {$_.Name -eq $file1f.Name} 
+                 $file2f = $files2f | Where-Object {$_.Name -eq $file1f.Name}
                  if ($file2f -ne $null) {
-                     $hash1f = Get-FileHash $file1f.FullName | Select-Object -ExpandProperty Hash 
+                     $hash1f = Get-FileHash $file1f.FullName | Select-Object -ExpandProperty Hash
                      $hash2f = Get-FileHash $file2f.FullName | Select-Object -ExpandProperty Hash
                      if ($hash1f -ne $hash2f) {
                          $textBox3IDf.Text += "`r`nIl file $($file1f.FullName) e `r`n il file $($file2f.FullName) hanno contenuto diverso" | Out-String
@@ -1642,7 +1632,7 @@ $LabelT32.Font = "Verdana, 11"
 $LabelT32.Location = New-Object System.Drawing.Point(0,75)
 $LabelT32.ForeColor = "#ebed31"
 $LabelT32.BackColor = "#434c56"
-$LabelT32.Size = New-Object System.Drawing.Size(145,20) 
+$LabelT32.Size = New-Object System.Drawing.Size(145,20)
 $PanelT3.Controls.Add($LabelT32)
 
 # Create Panel
@@ -1766,10 +1756,7 @@ $ButtonFD.Add_Click({
     if ($textBox321.Text -eq "") {
                 $textBox321.Text = 0
     }
-    $files = try {
-      &($filez) | where-object {$_.length -gt $textBox321.Text}
-    } catch {
-    }
+    $files = &($filez) | where-object {$_.length -gt $textBox321.Text} -ErrorAction SilentlyContinue
     $list = @{}
     foreach ($file in $files) {
           $dim = $file.length
@@ -1790,7 +1777,7 @@ $ButtonFD.Add_Click({
           }
       }
     }
-    $a1 = foreach ($item in $a.GetEnumerator() | sort Name) {$item.value}
+    $a1 = foreach ($item in $a.GetEnumerator() | Sort-Object Name) {$item.value}
     $result = foreach ($v in $a1) {
        if ($v -match "\]\-") {
            foreach ($key in $a.GetEnumerator() | Where-Object {$_.value -eq $v}) {
@@ -1807,7 +1794,7 @@ $ButtonFD.Add_Click({
 $Label32F = New-Object System.Windows.Forms.Label
 $Label32F.Text = "TROVA FILE"
 $Label32F.Font = [System.Drawing.Font]::new("Arial", 12, [System.Drawing.FontStyle]::Bold)
-$Label32F.Font = "Verdana, 11" 
+$Label32F.Font = "Verdana, 11"
 $Label32F.ForeColor = "#ffffff"
 $Label32F.BackColor = "#391754"
 $Label32F.Location = New-Object System.Drawing.Point(10,255)
@@ -1952,7 +1939,7 @@ $ButtonFF.Add_Click({
     if (!$textBox323.Text) {
       $textBox323.Text = "5000000000000"
     }
-    $textBox3FF.Text = Get-ChildItem *$($textBox324.Text)* -Path "$($Label32F2.Text)" -Recurse -Include *.$($textBox325.Text) | Where-Object {$_.length -gt $textBox322.Text -and $_.length -lt $textBox323.Text}  | ft name,Directory | Out-String
+    $textBox3FF.Text = Get-ChildItem *$($textBox324.Text)* -Path "$($Label32F2.Text)" -Recurse -Include *.$($textBox325.Text) | Where-Object {$_.length -gt $textBox322.Text -and $_.length -lt $textBox323.Text}  | Format-Table name,Directory | Out-String
 })
 
 
@@ -2027,16 +2014,16 @@ Function FileAB ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
-    $Global:SelectedFile2 = $OpenFileDialog.SafeFileName
-    $Global:SelectedPath2 = $OpenFileDialog.FileName
-    Return $SelectedFile2
-} 
+    $Global:SelectedFileAB = $OpenFileDialog.SafeFileName
+    $Global:SelectedPathAB = $OpenFileDialog.FileName
+    Return $SelectedFileAB
+}
 
 $ButtonF.Add_Click({
-    $Label3F.Text = FileAB   
+    $Label3F.Text = FileAB
 })
 
 # First folder selection
@@ -2129,7 +2116,7 @@ $PanelT33.Controls.Add($textBox3FS)
 
 $ButtonFS.Add_Click({
     $filePath = $Label3F.Text
-    $bytes = [System.IO.File]::ReadAllBytes($SelectedPath2)
+    $bytes = [System.IO.File]::ReadAllBytes($SelectedPathAB)
     $partSize = [math]::Ceiling($bytes.Length / 2)
     $part1 = $bytes[0..($partSize - 1)]
     $part2 = $bytes[$partSize..($bytes.Length - 1)]
@@ -2217,13 +2204,13 @@ Function File12 ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
     $Global:SelectedFile12 = $OpenFileDialog.SafeFileName
     $Global:SelectedPath12 = $OpenFileDialog.FileName
     Return $SelectedPath12
-} 
+}
 
 $ButtonJa.Add_Click({
    $Label3Ja.Text = File12
@@ -2261,7 +2248,7 @@ Function File22 ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
     $Global:SelectedFile22 = $OpenFileDialog.SafeFileName
@@ -2270,7 +2257,7 @@ Function File22 ($InitialDirectory)
 }
 
 $ButtonJb.Add_Click({
-    $Label3Jb.Text = File22 
+    $Label3Jb.Text = File22
 })
 
 # Set labels tooltips
@@ -2346,13 +2333,13 @@ Function FileI ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
     $Global:SelectedFileI = $OpenFileDialog.SafeFileName
     $Global:SelectedPathI = $OpenFileDialog.FileName
     Return $SelectedPathI
-} 
+}
 
 $ButtonI.Add_Click({
     $Label3i.Text = FileI
@@ -2419,7 +2406,7 @@ $PanelT33.Controls.Add($textBox3FI)
 $ButtonFI.Add_Click({
     $textBox3FI.Text = ""
     if ($Label3Fi.Text -eq "") {
-        $Label3Fi.Text = "$HOME\File_inverted"    
+        $Label3Fi.Text = "$HOME\File_inverted"
     }
     if (!$SelectedPathI) {
         $textBox3FI.Text = "NO!"
@@ -2477,13 +2464,13 @@ Function FileS ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
     $Global:SelectedFileS = $OpenFileDialog.SafeFileName
     $Global:SelectedPathS = $OpenFileDialog.FileName
     Return $SelectedFileS
-} 
+}
 
 $ButtonS.Add_Click({
     $Label3s.Text = FileS
@@ -2661,16 +2648,16 @@ Function FileH ($InitialDirectory)
     $OpenFileDialog.InitialDirectory = $InitialDirectory
     $OpenFileDialog.filter = “All files (*.*)| *.*”
     If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0, 
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
         [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
     }
     $Global:SelectedFileH = $OpenFileDialog.SafeFileName
     $Global:SelectedPathH = $OpenFileDialog.FileName
     Return $SelectedFileH
-} 
+}
 
 $ButtonF.Add_Click({
-    $Label3Fc.Text = FileH   
+    $Label3Fc.Text = FileH
 })
 
 $Label3d = New-Object System.Windows.Forms.Label
@@ -2762,7 +2749,7 @@ $ButtonP.Add_Click({
     $pswdl = $ComboBoxP.SelectedItem
     $chmin = [char](Get-Random -Minimum 97 -Maximum 122)
     $chmai = [char](Get-Random -Minimum 65 -Maximum 90)
-    $cnum = [char](Get-Random -Minimum 48 -Maximum 57)
+    $chnum = [char](Get-Random -Minimum 48 -Maximum 57)
     $chsim = [char](Get-Random -Minimum 33 -Maximum 47)
     $pswd = -join($chmin,$chmai,$chnum,$chsim | Sort-Object {Get-Random})
     do {$ch = [char](Get-Random -Minimum 33 -Maximum 125)
@@ -2809,7 +2796,7 @@ $ButtonD.BackColor = "#101c28"
 $PanelT34.Controls.Add($ButtonD)
 
 $ButtonD.Add_Click({
-    start windowsdefender:
+    Start-Process windowsdefender:
 })
 
 # Online scan section
@@ -2948,7 +2935,7 @@ $ButtonV.Add_Click({
 
 # Add event handler to handle click events for the Labels
 $Label_Click3 = {
-    param($sender, $e)
+    param($sender)
     $clickedLabel = $sender
     if ($clickedLabel -eq $LabelT31) {
         $PanelT31.Visible = $true
@@ -2975,7 +2962,7 @@ $Label_Click3 = {
 
 # Set the label indicator when its panel is active
 $Label_ClickX3 = {
-    param($sender, $e)
+    param($sender)
     $clickedLabel = $sender
     if ($clickedLabel -eq $LabelT31) {
         $Label3_1.Visible = $true
@@ -3012,7 +2999,7 @@ $LabelT33.Add_Click($Label_ClickX3)
 $LabelT34.Add_Click($Label_ClickX3)
 
 
-###### S H E L L 
+###### S H E L L
 
 # Create Label for SHELL tab
 $LabelTS = New-Object System.Windows.Forms.Label
@@ -3066,7 +3053,7 @@ $TextBox0S.ForeColor = "#ffffff"
 $TextBox0S.Location = New-Object System.Drawing.Point(10,80)
 $panelTS.Controls.Add($TextBox0S)
 
-#set the output in the textbox (using the user input from the previsous box) 
+#set the output in the textbox (using the user input from the previsous box)
 $Button0S.Add_Click({
     $TextBox0S.Text = "Attendere..."
     try {
@@ -3079,9 +3066,8 @@ $Button0S.Add_Click({
 
 # Add event handler to handle click events for the tabs
 $Label_Click = {
-    param($sender, $e)
+    param($sender)
     $clickedLabel = $sender
-    $PanelT = 
     if ($clickedLabel -eq $LabelT1) {
         $PanelT1.Visible = $true
         $PanelT2.Visible = $false
