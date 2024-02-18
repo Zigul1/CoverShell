@@ -2,7 +2,7 @@
 .SYNOPSIS
 Una GUI (basata su Windows Forms) per eseguire alcuni utili comandi e funzioni in PowerShell.
 .DESCRIPTION
-Una interfaccia grafica mostrerà pulsanti, campi da compilare e menu a tendina per velocizzare molte operazioni, come: controllare le performance dell'host e della rete, comparare e ricercare file nelle cartelle, dividere file, creare password, ricorrere a scanner online per virus, sanificare volumi, etc.
+Una interfaccia grafica mostrerà pulsanti, campi da compilare e menu a tendina per velocizzare molte operazioni, come: controllare le performance dell'host e della rete, comparare e ricercare file nelle cartelle, dividere file, creare password, ricorrere a scanner online per virus, sanificare volumi, basilare raccolta dati "forensics", etc.
 .LINK
 https://github.com/Zigul1/CoverShell
 #>
@@ -46,7 +46,7 @@ $main_form.Controls.Add($LabelC)
 
 # Create Label for "version"
 $LabelV = New-Object System.Windows.Forms.Label
-$LabelV.Text = "v. 1.0.3"
+$LabelV.Text = "v. 1.1.0"
 $LabelV.Font = "Verdana, 9"
 $LabelV.Location = New-Object System.Drawing.Point(850,625)
 $LabelV.ForeColor = "#ffffff"
@@ -550,8 +550,8 @@ $textBox131.Size = New-Object System.Drawing.Size(700,20)
 $textBox131.Font = "Verdana, 11"
 $textBox131.BackColor = "#1d1e25"
 $textBox131.ForeColor = "#ffffff"
-$textBox131.Add_GotFocus({ $textBox131.BackColor = "#000000" })
-$textBox131.Add_LostFocus({ $textBox131.BackColor = "#1d1e25" })
+$textBox131.Add_GotFocus({$textBox131.BackColor = "#000000"})
+$textBox131.Add_LostFocus({$textBox131.BackColor = "#1d1e25"})
 $PanelT13.Controls.Add($textBox131)
 
 # Label and text field for the string
@@ -567,8 +567,8 @@ $textBox132.Size = New-Object System.Drawing.Size(700,20)
 $textBox132.Font = "Verdana, 11"
 $textBox132.BackColor = "#1d1e25"
 $textBox132.ForeColor = "#ffffff"
-$textBox132.Add_GotFocus({ $textBox132.BackColor = "#000000" })
-$textBox132.Add_LostFocus({ $textBox132.BackColor = "#1d1e25" })
+$textBox132.Add_GotFocus({$textBox132.BackColor = "#000000"})
+$textBox132.Add_LostFocus({$textBox132.BackColor = "#1d1e25"})
 $PanelT13.Controls.Add($textBox132)
 
 # Label and text field for the interval
@@ -584,8 +584,8 @@ $textBox133.Size = New-Object System.Drawing.Size(100,20)
 $textBox133.Font = "Verdana, 11"
 $textBox133.BackColor = "#1d1e25"
 $textBox133.ForeColor = "#ffffff"
-$textBox133.Add_GotFocus({ $textBox133.BackColor = "#000000" })
-$textBox133.Add_LostFocus({ $textBox133.BackColor = "#1d1e25" })
+$textBox133.Add_GotFocus({$textBox133.BackColor = "#000000"})
+$textBox133.Add_LostFocus({$textBox133.BackColor = "#1d1e25"})
 $PanelT13.Controls.Add($textBox133)
 
 # Label and text field for the iteration
@@ -601,8 +601,8 @@ $textBox134.Size = New-Object System.Drawing.Size(100,20)
 $textBox134.Font = "Verdana, 11"
 $textBox134.BackColor = "#1d1e25"
 $textBox134.ForeColor = "#ffffff"
-$textBox134.Add_GotFocus({ $textBox134.BackColor = "#000000" })
-$textBox134.Add_LostFocus({ $textBox134.BackColor = "#1d1e25" })
+$textBox134.Add_GotFocus({$textBox134.BackColor = "#000000"})
+$textBox134.Add_LostFocus({$textBox134.BackColor = "#1d1e25"})
 $PanelT13.Controls.Add($textBox134)
 
 $ButtonS = New-Object System.Windows.Forms.Button
@@ -1013,7 +1013,7 @@ $ButtonST2.Add_Click({
         } else {
         "`nPing 8.8.8.8: NO`n`n" | Out-String
         }
-    $out3a = nslookup myip.opendns.com. resolver1.opendns.com | Select-Object -Index 4 -OutVariable P_IP # NOT WORKING WITH "FORCED DNS" (PORTMASTER, ETC.)
+    nslookup myip.opendns.com. resolver1.opendns.com | Select-Object -Index 4 -OutVariable P_IP # NOT WORKING WITH "FORCED DNS" (PORTMASTER, ETC.)
     $out3b = try {
                     $P_IP.substring($P_IP.length -16)
              } catch {
@@ -1067,7 +1067,7 @@ $ButtonST2.Add_Click({
     $out7 = "`n`nHost IP address: $($out7a)" | Out-String
     $out8a = $names = @(); $names = (Get-NetFirewallProfile).name
              $values = @(); $v = (Get-NetFirewallProfile).enabled
-             Foreach ($d in $v){
+             foreach ($d in $v){
                         $values = $values + "   $d"
              }
     $out8b = "`n`nWindows firewall:"
@@ -1174,8 +1174,8 @@ $textBox232b.Size = New-Object System.Drawing.Size(60,20)
 $textBox232b.Font = "Verdana, 11"
 $textBox232b.BackColor = "#1d1e25"
 $textBox232b.ForeColor = "#ffffff"
-$textBox232b.Add_GotFocus({ $textBox232b.BackColor = "#000000" })
-$textBox232b.Add_LostFocus({ $textBox232b.BackColor = "#1d1e25" })
+$textBox232b.Add_GotFocus({$textBox232b.BackColor = "#000000"})
+$textBox232b.Add_LostFocus({$textBox232b.BackColor = "#1d1e25"})
 $PanelT23.Controls.Add($textBox232b)
 
 # Output textbox
@@ -1225,7 +1225,7 @@ $PanelT23.Controls.Add($Label23adm)
 
 # Create a Label to introduce the Panel 3 third action
 $Label234 = New-Object System.Windows.Forms.Label
-$Label234.Text = "Esegui un 'ping sweep' nella rete dell'host"
+$Label234.Text = "Esegui un 'ping sweep' nella rete dell'host (192.168.1.0/24)"
 $Label234.Font = "Verdana, 11"
 $Label234.Location = New-Object System.Drawing.Point(150,315)
 $Label234.AutoSize = $true
@@ -1256,7 +1256,7 @@ $ButtonST3c.Add_Click({
                         ping -n 1 -w 100 192.168.1.$i | findstr "TTL"
                     }
     $dins = ($ip | Select-String -Pattern "(?:[0-9]{1,3}\.){3}[0-9]{1,3}" | ForEach-Object {$_.Matches[0..254].Value})
-    $swp = ForEach ($ipdns in $dins) {Resolve-DnsName $ipdns 2> $null | Format-Table Type,@{n="IP";e={$ipdns}},NameHost}
+    $swp = foreach ($ipdns in $dins) {Resolve-DnsName $ipdns 2> $null | Format-Table Type,@{n="IP";e={$ipdns}},NameHost}
     $textBox233.Text = $dins + $swp | Out-String
 })
 
@@ -1392,8 +1392,7 @@ $Label3F1.AutoEllipsis = $true
 $Label3F1.BackColor = "#101c28"
 $PanelT31.Controls.Add($Label3F1)
 
-Function File ($InitialDirectory)
-{
+Function File ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -1435,8 +1434,7 @@ $Label3F2.AutoEllipsis = $true
 $Label3F2.BackColor = "#101c28"
 $PanelT31.Controls.Add($Label3F2)
 
-Function File2 ($InitialDirectory)
-{
+Function File2 ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -1723,8 +1721,8 @@ $textBox321.Size = New-Object System.Drawing.Size(160,18)
 $textBox321.Font = "Verdana, 11"
 $textBox321.BackColor = "#1d1e25"
 $textBox321.ForeColor = "#ffffff"
-$textBox321.Add_GotFocus({ $textBox321.BackColor = "#000000" })
-$textBox321.Add_LostFocus({ $textBox321.BackColor = "#1d1e25" })
+$textBox321.Add_GotFocus({$textBox321.BackColor = "#000000"})
+$textBox321.Add_LostFocus({$textBox321.BackColor = "#1d1e25"})
 $PanelT32.Controls.Add($textBox321)
 
 # Duplicates button and output
@@ -1845,8 +1843,8 @@ $textBox322.Size = New-Object System.Drawing.Size(160,18)
 $textBox322.Font = "Verdana, 11"
 $textBox322.BackColor = "#1d1e25"
 $textBox322.ForeColor = "#ffffff"
-$textBox322.Add_GotFocus({ $textBox322.BackColor = "#000000" })
-$textBox322.Add_LostFocus({ $textBox322.BackColor = "#1d1e25" })
+$textBox322.Add_GotFocus({$textBox322.BackColor = "#000000"})
+$textBox322.Add_LostFocus({$textBox322.BackColor = "#1d1e25"})
 $PanelT32.Controls.Add($textBox322)
 
 # Create maximum size settings
@@ -1863,8 +1861,8 @@ $textBox323.Size = New-Object System.Drawing.Size(160,18)
 $textBox323.Font = "Verdana, 11"
 $textBox323.BackColor = "#1d1e25"
 $textBox323.ForeColor = "#ffffff"
-$textBox323.Add_GotFocus({ $textBox323.BackColor = "#000000" })
-$textBox323.Add_LostFocus({ $textBox323.BackColor = "#1d1e25" })
+$textBox323.Add_GotFocus({$textBox323.BackColor = "#000000"})
+$textBox323.Add_LostFocus({$textBox323.BackColor = "#1d1e25"})
 $PanelT32.Controls.Add($textBox323)
 
 # Create file name selection
@@ -1881,8 +1879,8 @@ $textBox324.Size = New-Object System.Drawing.Size(150,18)
 $textBox324.Font = "Verdana, 11"
 $textBox324.BackColor = "#1d1e25"
 $textBox324.ForeColor = "#ffffff"
-$textBox324.Add_GotFocus({ $textBox324.BackColor = "#000000" })
-$textBox324.Add_LostFocus({ $textBox324.BackColor = "#1d1e25" })
+$textBox324.Add_GotFocus({$textBox324.BackColor = "#000000"})
+$textBox324.Add_LostFocus({$textBox324.BackColor = "#1d1e25"})
 $PanelT32.Controls.Add($textBox324)
 
 # Create extension selection
@@ -1899,8 +1897,8 @@ $textBox325.Size = New-Object System.Drawing.Size(90,18)
 $textBox325.Font = "Verdana, 11"
 $textBox325.BackColor = "#1d1e25"
 $textBox325.ForeColor = "#ffffff"
-$textBox325.Add_GotFocus({ $textBox325.BackColor = "#000000" })
-$textBox325.Add_LostFocus({ $textBox325.BackColor = "#1d1e25" })
+$textBox325.Add_GotFocus({$textBox325.BackColor = "#000000"})
+$textBox325.Add_LostFocus({$textBox325.BackColor = "#1d1e25"})
 $PanelT32.Controls.Add($textBox325)
 
 # File finder button and output
@@ -2007,8 +2005,7 @@ $Label3F.AutoEllipsis = $true
 $Label3F.BackColor = "#101c28"
 $PanelT33.Controls.Add($Label3F)
 
-Function FileAB ($InitialDirectory)
-{
+Function FileAB ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -2197,8 +2194,7 @@ $Label3Ja.AutoEllipsis = $true
 $Label3Ja.BackColor = "#101c28"
 $PanelT33.Controls.Add($Label3Ja)
 
-Function File12 ($InitialDirectory)
-{
+Function File12 ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -2241,8 +2237,7 @@ $Label3Jb.AutoEllipsis = $true
 $Label3Jb.BackColor = "#101c28"
 $PanelT33.Controls.Add($Label3Jb)
 
-Function File22 ($InitialDirectory)
-{
+Function File22 ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -2326,8 +2321,7 @@ $Label3i.AutoEllipsis = $true
 $Label3i.BackColor = "#101c28"
 $PanelT33.Controls.Add($Label3i)
 
-Function FileI ($InitialDirectory)
-{
+Function FileI ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -2347,7 +2341,7 @@ $ButtonI.Add_Click({
 
 # Destination folder selection
 $Label332i = New-Object System.Windows.Forms.Label
-$Label332i.Text = "Destinazione"
+$Label332i.Text = "Cartella output"
 $Label332i.Font = "Verdana, 11"
 $Label332i.Location = New-Object System.Drawing.Point(10,395)
 $Label332i.AutoSize = $true
@@ -2413,7 +2407,7 @@ $ButtonFI.Add_Click({
         return
     }
     $stream = New-Object System.IO.FileStream($Label3Fi.Text, [System.IO.FileMode]::Create)
-    Get-Content -Path "$($SelectedPathI)" -Encoding Byte | ForEach-Object { [Convert]::ToString($_, 2).PadLeft(8, '0').Replace('0', 'x').Replace('1', '0').Replace('x', '1') } | ForEach-Object { [Convert]::ToByte($_, 2) } | ForEach-Object { $stream.WriteByte($_) }
+    Get-Content -Path "$($SelectedPathI)" -Encoding Byte | ForEach-Object { [Convert]::ToString($_, 2).PadLeft(8, '0').Replace('0', 'x').Replace('1', '0').Replace('x', '1') } | ForEach-Object { [Convert]::ToByte($_, 2) } | ForEach-Object {$stream.WriteByte($_)}
     $stream.Close()
     if ($? -match "True") {
         $textBox3FI.Text = "OK"
@@ -2457,8 +2451,7 @@ $Label3s.AutoEllipsis = $true
 $Label3s.BackColor = "#101c28"
 $PanelT33.Controls.Add($Label3s)
 
-Function FileS ($InitialDirectory)
-{
+Function FileS ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -2478,7 +2471,7 @@ $ButtonS.Add_Click({
 
 # Destination folder selection
 $Label332s = New-Object System.Windows.Forms.Label
-$Label332s.Text = "Destinazione"
+$Label332s.Text = "Cartella output"
 $Label332s.Font = "Verdana, 11"
 $Label332s.Location = New-Object System.Drawing.Point(10,515)
 $Label332s.AutoSize = $true
@@ -2543,7 +2536,7 @@ $ComboBox.Width = 50
 $ComboBox.BackColor = "#1d1e25"
 $ComboBox.ForeColor = "#ffffff"
 $ComboBox.Font = "Verdana, 11"
-$bits = 1..7 | ForEach-Object { $ComboBox.Items.Add($_) }
+$bits = 1..7 | ForEach-Object {$ComboBox.Items.Add($_)}
 $ComboBox.Location = New-Object System.Drawing.Point(690,480)
 $panelT33.Controls.Add($ComboBox)
 
@@ -2574,7 +2567,6 @@ $ButtonSh.Add_Click({
         $textBox3Sb.Text = "NO!"
     }
 })
-
 
 
 ### P A N E L  4
@@ -2641,8 +2633,7 @@ $Label3Fc.AutoEllipsis = $true
 $Label3Fc.BackColor = "#101c28"
 $PanelT34.Controls.Add($Label3Fc)
 
-Function FileH ($InitialDirectory)
-{
+Function FileH ($InitialDirectory) {
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
     $OpenFileDialog.Title = "Please Select File"
     $OpenFileDialog.InitialDirectory = $InitialDirectory
@@ -2673,7 +2664,7 @@ $ComboBox.Width = 90
 $ComboBox.BackColor = "#1d1e25"
 $ComboBox.ForeColor = "#ffffff"
 $ComboBox.Font = "Verdana, 11"
-$LIST = "MD5","RIPEMD160","SHA1","SHA256","SHA384","SHA512" | ForEach-Object { $ComboBox.Items.Add($_) }
+$LIST = "MD5","RIPEMD160","SHA1","SHA256","SHA384","SHA512" | ForEach-Object {$ComboBox.Items.Add($_)}
 $ComboBox.Location = New-Object System.Drawing.Point(650,37)
 $panelT34.Controls.Add($ComboBox)
 
@@ -2730,7 +2721,7 @@ $ComboBoxP.Width = 50
 $ComboBoxP.BackColor = "#1d1e25"
 $ComboBoxP.ForeColor = "#ffffff"
 $ComboBoxP.Font = "Verdana, 11"
-$pslenght = 5..20 | ForEach-Object { $ComboBoxP.Items.Add($_) }
+$pslenght = 5..20 | ForEach-Object {$ComboBoxP.Items.Add($_)}
 $ComboBoxP.Location = New-Object System.Drawing.Point(110,170)
 $panelT34.Controls.Add($ComboBoxP)
 
@@ -2867,7 +2858,7 @@ $PanelT34.Controls.Add($Label34s)
 $Label343 = New-Object System.Windows.Forms.Label
 $Label343.Text = "Con questa funzione si CANCELLA TUTTO IL CONTENUTO del volume, lo si FORMATTA al
 medesimo file system (FAT, NTFS, etc.) e si SOVRASCRIVE tutto lo spazio con dati random
-(usando il comando 'cipher/w:'), così da rendere più difficile il recupero dei dati."
+(usando il comando 'cipher /w:'), così da rendere più difficile il recupero dei dati."
 $Label343.Font = "Verdana, 11"
 $Label343.Location = New-Object System.Drawing.Point(10,440)
 $Label343.AutoSize = $true
@@ -2886,7 +2877,7 @@ $ComboBoxV.Width = 50
 $ComboBoxV.BackColor = "#1d1e25"
 $ComboBoxV.ForeColor = "#ffffff"
 $ComboBoxV.Font = "Verdana, 11"
-$vols = "D","E","F","G","H","I","J","K","L","M","N","O","P" | ForEach-Object { $ComboBoxV.Items.Add($_) }
+$vols = "D","E","F","G","H","I","J","K","L","M","N","O","P" | ForEach-Object {$ComboBoxV.Items.Add($_)}
 $ComboBoxV.Location = New-Object System.Drawing.Point(155,502)
 $panelT34.Controls.Add($ComboBoxV)
 
@@ -2933,6 +2924,559 @@ $ButtonV.Add_Click({
     }
 })
 
+
+### P A N E L  5
+
+# Create Label for PANEL 5
+[System.Windows.Forms.Label]$LabelT35 = @{ 
+    Text = " FORENSICS"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(0,180)
+    ForeColor = "#ebed31"
+    BackColor = "#434c56"
+    Size = New-Object System.Drawing.Size(145,20)
+}
+$PanelT3.Controls.Add($LabelT35)
+
+# Create Panel
+[System.Windows.Forms.Panel]$PanelT35 = @{
+    Location = New-Object System.Drawing.Point(145,15)
+    Size = New-Object System.Drawing.Size(900,590)
+    BackColor = "#434c56"
+}
+$PanelT3.Controls.Add($PanelT35)
+
+# Create a Label to signal when the Panel is selected
+[System.Windows.Forms.Label]$Label3_5 = @{
+    Text = "►"
+    Font = "Verdana, 24"
+    Location = New-Object System.Drawing.Point(125,-10)
+    AutoSize = $true
+    ForeColor = "#ebed31"
+    Visible = $false
+}
+$LabelT35.Controls.Add($Label3_5)
+
+# Registry section
+
+[System.Windows.Forms.Label]$Label350 = @{
+    Text = "SCARICA REGISTRO"
+    Font = "Verdana, 11"
+    ForeColor = "#ffffff"
+    BackColor = "#391754"
+    Location = New-Object System.Drawing.Point(10,10)
+    Size = New-Object System.Drawing.Size(160,18)
+}
+$PanelT35.Controls.Add($Label350)
+
+# Folder selection
+[System.Windows.Forms.Label]$Label351 = @{
+    Text = "Cartella output"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(10,40)
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label351)
+
+[System.Windows.Forms.Button]$ButtonR = @{
+    Location = New-Object System.Drawing.Point(130,35)
+    Size = New-Object System.Drawing.Size(120,30)
+    Text = "CARTELLA"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonR)
+
+[System.Windows.Forms.Label]$Label352 = @{
+    Font = "Verdana, 9"
+    Location = New-Object System.Drawing.Point(260,42)
+    Size = New-Object System.Drawing.Size (480,18)
+    AutoEllipsis = $true
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($Label352)
+
+$ButtonR.Add_Click({
+    $folderBrowserR = New-Object System.Windows.Forms.FolderBrowserDialog
+    $folderBrowserR.ShowDialog() | Out-Null
+    $Label352.Text = $folderBrowserR.SelectedPath
+})
+
+# Execution button and files naming
+[System.Windows.Forms.Button]$ButtonRD = @{
+    Location = New-Object System.Drawing.Point(10,75)
+    Size = New-Object System.Drawing.Size(130,30)
+    Text = "SCARICA CHIAVI"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonRD)
+
+[System.Windows.Forms.Label]$Label353 = @{
+    Text = "Cinque file di backup del registro sono stati creati nel percorso scelto"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(215,82)
+    AutoSize = $true
+    Visible = $false
+}
+$PanelT35.Controls.Add($Label353)
+
+[System.Windows.Forms.TextBox]$textBox354 = @{
+    Location = New-Object System.Drawing.Point(155,75)
+    Size = New-Object System.Drawing.Size(50,30)
+    Multiline = $true
+    Font = "Verdana, 11"
+    BackColor = "#08243f"
+    ForeColor = "#ffffff"
+}
+$PanelT35.Controls.Add($textBox354)
+
+$ButtonRD.Add_Click({
+    $textBox354.Text = " "
+    if (!$label352.text) {
+    $textBox354.Text = " NO!"
+    } else {
+        $textBox354.Text = "Wait"
+        reg export HKCR "$($label352.text)\hkcr.reg"
+        reg export HKCU "$($label352.text)\hkcu.reg"
+        reg export HKLM "$($label352.text)\hklm.reg"
+        reg export HKU "$($label352.text)\hku.reg"
+        reg export HKCC "$($label352.text)\hkcc.reg"
+        if ($? -match "True") {
+            $textBox354.Text = " OK"
+            $Label353.Visible = $true
+        } else {
+            $textBox354.Text = " NO!"
+        }
+    }
+})
+
+# Task section
+
+[System.Windows.Forms.Label]$Label350t = @{
+    Text = "SCARICA TASK"
+    Font = "Verdana, 11"
+    ForeColor = "#ffffff"
+    BackColor = "#391754"
+    Location = New-Object System.Drawing.Point(10,118)
+    Size = New-Object System.Drawing.Size(120,18)
+}
+$PanelT35.Controls.Add($Label350t)
+
+# Folder selection
+[System.Windows.Forms.Label]$Label351t = @{
+    Text = "Cartella output"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(10,148)
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label351t)
+
+[System.Windows.Forms.Button]$ButtonScT = @{
+    Location = New-Object System.Drawing.Point(130,145)
+    Size = New-Object System.Drawing.Size(120,30)
+    Text = "CARTELLA"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonScT)
+
+[System.Windows.Forms.Label]$Label352t = @{
+    Font = "Verdana, 9"
+    Location = New-Object System.Drawing.Point(260,150)
+    Size = New-Object System.Drawing.Size (480,18)
+    AutoEllipsis = $true
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($Label352t)
+
+$ButtonScT.Add_Click({
+    $folderBrowserT = New-Object System.Windows.Forms.FolderBrowserDialog
+    $folderBrowserT.ShowDialog() | Out-Null
+    $Label352t.Text = $folderBrowserT.SelectedPath
+})
+
+# Execution button and files naming
+[System.Windows.Forms.Button]$ButtonDT = @{
+    Location = New-Object System.Drawing.Point(10,183)
+    Size = New-Object System.Drawing.Size(130,30)
+    Text = "SCARICA TASK"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonDT)
+
+[System.Windows.Forms.Label]$Label353t = @{
+    Text = "Il file ScheduledTasks.txt è stato creato nel percorso scelto"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(215,190)
+    AutoSize = $true
+    Visible = $false
+}
+$PanelT35.Controls.Add($Label353t)
+
+[System.Windows.Forms.TextBox]$textBox354t = @{
+    Location = New-Object System.Drawing.Point(155,183)
+    Size = New-Object System.Drawing.Size(50,30)
+    Multiline = $true
+    Font = "Verdana, 11"
+    BackColor = "#08243f"
+    ForeColor = "#ffffff"
+}
+$PanelT35.Controls.Add($textBox354t)
+
+$ButtonDT.Add_Click({
+    $textBox354t.Text = " "
+    if (!$label352t.text) {
+    $textBox354t.Text = " NO!"
+    } else {
+        $textBox354t.Text = "Wait"
+        Get-ScheduledTask | Get-ScheduledTaskInfo | Sort-Object LastRunTime -Descending | Format-Table -AutoSize > "$($label352t.text)\ScheduledTasks.txt"
+        if ($? -match "True") {
+            $textBox354t.Text = " OK"
+            $Label353t.Visible = $true
+        } else {
+            $textBox354t.Text = " NO!"
+        }
+    }
+})
+
+# Clipboard section
+
+[System.Windows.Forms.Label]$Label350c = @{
+    Text = "SCARICA CLIPBOARD"
+    Font = "Verdana, 11"
+    ForeColor = "#ffffff"
+    BackColor = "#391754"
+    Location = New-Object System.Drawing.Point(10,225)
+    Size = New-Object System.Drawing.Size(170,18)
+}
+$PanelT35.Controls.Add($Label350c)
+
+# Folder selection
+[System.Windows.Forms.Label]$Label351c = @{
+    Text = "Cartella output"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(10,255)
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label351c)
+
+[System.Windows.Forms.Button]$ButtonCD = @{
+    Location = New-Object System.Drawing.Point(130,250)
+    Size = New-Object System.Drawing.Size(120,30)
+    Text = "CARTELLA"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonCD)
+
+[System.Windows.Forms.Label]$Label352c = @{
+    Font = "Verdana, 9"
+    Location = New-Object System.Drawing.Point(260,257)
+    Size = New-Object System.Drawing.Size (480,18)
+    AutoEllipsis = $true
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($Label352c)
+
+$ButtonCD.Add_Click({
+    $folderBrowserC = New-Object System.Windows.Forms.FolderBrowserDialog
+    $folderBrowserC.ShowDialog() | Out-Null
+    $Label352c.Text = $folderBrowserC.SelectedPath
+})
+
+# Execution button and files naming
+[System.Windows.Forms.Button]$ButtonDC = @{
+    Location = New-Object System.Drawing.Point(10,290)
+    Size = New-Object System.Drawing.Size(130,30)
+    Text = "CLIPBOARD"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonDC)
+
+[System.Windows.Forms.Label]$Label353c = @{
+    Text = "Il file Clipboard.txt è stato creato nel percorso scelto"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(215,297)
+    AutoSize = $true
+    Visible = $false
+}
+$PanelT35.Controls.Add($Label353c)
+
+[System.Windows.Forms.TextBox]$textBox354c = @{
+    Location = New-Object System.Drawing.Point(155,290)
+    Size = New-Object System.Drawing.Size(50,30)
+    Multiline = $true
+    Font = "Verdana, 11"
+    BackColor = "#08243f"
+    ForeColor = "#ffffff"
+}
+$PanelT35.Controls.Add($textBox354c)
+
+$ButtonDC.Add_Click({
+    $textBox354c.Text = " "
+    if (!$label352c.text) {
+    $textBox354c.Text = " NO!"
+    } else {
+        $textBox354c.Text = "Wait"
+        Start-Sleep 1
+        Get-Clipboard -Format Audio >> "$($label352c.text)\Clipboard.txt.txt"
+        Get-Clipboard -Format FileDropList >> "$($label352c.text)\Clipboard.txt.txt"
+        Get-Clipboard -Format Image >> "$($label352c.text)\Clipboard.txt.txt"
+        Get-Clipboard -Format Text >> "$($label352c.text)\Clipboard.txt.txt"
+        if ($? -match "True") {
+            $textBox354c.Text = " OK"
+            $Label353c.Visible = $true
+        } else {
+            $textBox354c.Text = " NO!"
+        }
+    }
+})
+
+# Prefetch section
+
+[System.Windows.Forms.Label]$Label350p = @{
+    Text = "SCARICA PREFETCH"
+    Font = "Verdana, 11"
+    ForeColor = "#ffffff"
+    BackColor = "#391754"
+    Location = New-Object System.Drawing.Point(10,332)
+    Size = New-Object System.Drawing.Size(160,18)
+}
+$PanelT35.Controls.Add($Label350p)
+
+# Folder selection
+[System.Windows.Forms.Label]$Label351p = @{
+    Text = "Cartella output"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(10,362)
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label351p)
+
+[System.Windows.Forms.Button]$ButtonDP = @{
+    Location = New-Object System.Drawing.Point(130,357)
+    Size = New-Object System.Drawing.Size(120,30)
+    Text = "CARTELLA"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonDP)
+
+[System.Windows.Forms.Label]$Label352p = @{
+    Font = "Verdana, 9"
+    Location = New-Object System.Drawing.Point(260,364)
+    Size = New-Object System.Drawing.Size (480,18)
+    AutoEllipsis = $true
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($Label352p)
+
+$ButtonDP.Add_Click({
+    $folderBrowserP = New-Object System.Windows.Forms.FolderBrowserDialog
+    $folderBrowserP.ShowDialog() | Out-Null
+    $Label352p.Text = $folderBrowserP.SelectedPath
+})
+
+# Execution button and files naming
+[System.Windows.Forms.Button]$ButtonPD = @{
+    Location = New-Object System.Drawing.Point(10,397)
+    Size = New-Object System.Drawing.Size(130,30)
+    Text = "PREFETCH *"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonPD)
+
+# Label for admin rights
+[System.Windows.Forms.Label]$Label35a = @{
+    Text = "* Richiesti diritti di admin"
+    Font = "Verdana, 9"
+    Location = New-Object System.Drawing.Point(215,414)
+    ForeColor = "#8af8ff" #ff8ae7
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label35a)
+
+[System.Windows.Forms.Label]$Label353p = @{
+    Text = "Il file Prefetch.txt è stato creato nel percorso scelto"
+    Font = "Verdana, 10"
+    Location = New-Object System.Drawing.Point(215,395)
+    AutoSize = $true
+    Visible = $false
+}
+$PanelT35.Controls.Add($Label353p)
+
+[System.Windows.Forms.TextBox]$textBox354p = @{
+    Location = New-Object System.Drawing.Point(155,397)
+    Size = New-Object System.Drawing.Size(50,30)
+    Multiline = $true
+    Font = "Verdana, 11"
+    BackColor = "#08243f"
+    ForeColor = "#ffffff"
+}
+$PanelT35.Controls.Add($textBox354p)
+
+$ButtonPD.Add_Click({
+    $textBox354p.Text = " "
+    if (!$label352p.text) {
+    $textBox354p.Text = " NO!"
+    } else {
+        $textBox354p.Text = "Wait"
+        Get-ChildItem -Path C:\Windows\Prefetch -Filter *.pf | Sort-Object LastWriteTime -Descending | Format-Table -AutoSize > "$($label352p.text)\Prefetch.txt"
+        if ($? -match "True") {
+            $textBox354p.Text = " OK"
+            $Label353p.Visible = $true
+        } else {
+            $textBox354p.Text = " NO!"
+        }
+    }
+})
+
+# Hex section
+
+[System.Windows.Forms.Label]$Label355 = @{
+    Text = "MOSTRA FILE HEX"
+    Font = "Verdana, 11"
+    ForeColor = "#ffffff"
+    BackColor = "#391754"
+    Location = New-Object System.Drawing.Point(10,440)
+    Size = New-Object System.Drawing.Size(145,18)
+}
+$PanelT35.Controls.Add($Label355)
+
+[System.Windows.Forms.Label]$Label358 = @{
+    Location = New-Object System.Drawing.Point(160,442)
+    Text = " Dimensione massima consigliata ~10MB"
+    Font = "Verdana, 10"
+    ForeColor = "#ff8ae7"
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label358)
+
+# File selection
+[System.Windows.Forms.Label]$Label356 = @{
+    Text = "Scegli file"
+    Font = "Verdana, 11"
+    Location = New-Object System.Drawing.Point(10,470)
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label356)
+
+[System.Windows.Forms.Button]$ButtonFH1 = @{
+    Location = New-Object System.Drawing.Point(130,465)
+    Size = New-Object System.Drawing.Size(120,30)
+    Text = "FILE"
+    Font = "Verdana, 10"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonFH1)
+
+[System.Windows.Forms.Label]$Label357 = @{
+    Font = "Verdana, 9"
+    Location = New-Object System.Drawing.Point(260,472)
+    Size = New-Object System.Drawing.Size(480,18)
+    AutoEllipsis = $true
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($Label357)
+
+Function FileH1 ($InitialDirectory) {
+    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+    $OpenFileDialog.Title = "Please Select File"
+    $OpenFileDialog.InitialDirectory = $InitialDirectory
+    $OpenFileDialog.filter = “All files (*.*)| *.*”
+    If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
+        [System.Windows.Forms.MessageBox]::Show("No File Selected. Please select a file!", "Error", 0,
+        [System.Windows.Forms.MessageBoxIcon]::Exclamation) | Out-Null # to avoid the "ok" message to show up
+    }
+    $Global:SelectedFileH1 = $OpenFileDialog.SafeFileName
+    $Global:SelectedPathH1 = $OpenFileDialog.FileName
+    Return $SelectedFileH1
+}
+
+$ButtonFH1.Add_Click({
+    $Label357.Text = FileH1
+})
+
+[System.Windows.Forms.Button]$ButtonHC = @{
+    Location = New-Object System.Drawing.Point(10,505)
+    Size = New-Object System.Drawing.Size(130,30)
+    Text = "MOSTRA HEX"
+    Font = "Verdana, 11"
+    BackColor = "#101c28"
+}
+$PanelT35.Controls.Add($ButtonHC)
+
+[System.Windows.Forms.Label]$Label360 = @{
+    Location = New-Object System.Drawing.Point(145,512)
+    Text = "Apre Blocco Note con file in esadecimale, oppure:"
+    Font = "Verdana, 10"
+    AutoSize = $true
+}
+$PanelT35.Controls.Add($Label360)
+
+# Create CHECK BOX
+[System.Windows.Forms.CheckBox]$checkBoxH = @{
+    Text = " Copia risultato nella clipboard"
+    Font = "Verdana, 11"
+    AutoSize = $true
+    Location = New-Object System.Drawing.Point(490,510)
+}
+$panelT35.Controls.Add($checkBoxH)
+
+[System.Windows.Forms.TextBox]$textBox360 = @{
+    Location = New-Object System.Drawing.Point(10,540)
+    Size = New-Object System.Drawing.Size(730,30)
+    Font = "Verdana, 11"
+    Multiline = $true
+    BackColor = "#08243f"
+    ForeColor = "#ffffff"
+}
+$panelT35.Controls.Add($textBox360)
+
+$ButtonHC.Add_Click({
+    $textBox360.Text = "Attendere, anche se l'applicazione sembra in stallo..."
+    Start-Sleep 1
+    if ($Label357.Text) {
+    } else {
+        $textBox360.Text = "Scegli file"
+        return
+    }
+    if ($checkBoxH.Checked) {
+    Format-Hex $SelectedPathH1 | Out-String | clip
+    $textBox360.Text = "Fatto"
+    } else {
+        $FirstH = Format-Hex $SelectedPathH1 | Out-String
+        Add-Type -TypeDefinition @" 
+        using System; 
+        using System.Runtime.InteropServices; 
+        public class Tricks { 
+          [DllImport("user32.dll")] 
+          public static extern int FindWindow(string lpClassName, string lpWindowName); 
+          [DllImport("user32.dll")] 
+          public static extern int SetForegroundWindow(int hWnd); 
+        } 
+"@
+        Add-Type -TypeDefinition @"
+        using System;
+        using System.IO;
+        public class NotepadTricks {
+          public static void StartNotepadWithContent(string content) {
+            string tempPath = Path.GetTempFileName();
+            File.WriteAllText(tempPath, content);
+            System.Diagnostics.Process.Start("notepad.exe", tempPath);
+          }
+        }
+"@
+        [NotepadTricks]::StartNotepadWithContent($FirstH)
+        Start-Sleep 1
+        $textBox360.Text = "Fatto"
+    }
+})
+
 # Add event handler to handle click events for the Labels
 $Label_Click3 = {
     param($sender)
@@ -2942,21 +3486,31 @@ $Label_Click3 = {
         $PanelT32.Visible = $false
         $PanelT33.Visible = $false
         $PanelT34.Visible = $false
+        $PanelT35.Visible = $false
     } elseif ($clickedLabel -eq $LabelT32) {
         $PanelT31.Visible = $false
         $PanelT32.Visible = $true
         $PanelT33.Visible = $false
         $PanelT34.Visible = $false
+        $PanelT35.Visible = $false
     } elseif ($clickedLabel -eq $LabelT33) {
         $PanelT31.Visible = $false
         $PanelT32.Visible = $false
         $PanelT33.Visible = $true
         $PanelT34.Visible = $false
+        $PanelT35.Visible = $false
     } elseif ($clickedLabel -eq $LabelT34) {
         $PanelT31.Visible = $false
         $PanelT32.Visible = $false
         $PanelT33.Visible = $false
         $PanelT34.Visible = $true
+        $PanelT35.Visible = $false
+    } elseif ($clickedLabel -eq $LabelT35) {
+        $PanelT31.Visible = $false
+        $PanelT32.Visible = $false
+        $PanelT33.Visible = $false
+        $PanelT34.Visible = $false
+        $PanelT35.Visible = $true
     }
 }
 
@@ -2969,21 +3523,31 @@ $Label_ClickX3 = {
         $Label3_2.Visible = $false
         $Label3_3.Visible = $false
         $Label3_4.Visible = $false
+        $Label3_5.Visible = $false
     } elseif ($clickedLabel -eq $LabelT32) {
         $Label3_1.Visible = $false
         $Label3_2.Visible = $true
         $Label3_3.Visible = $false
         $Label3_4.Visible = $false
+        $Label3_5.Visible = $false
     } elseif ($clickedLabel -eq $LabelT33) {
         $Label3_1.Visible = $false
         $Label3_2.Visible = $false
         $Label3_3.Visible = $true
         $Label3_4.Visible = $false
+        $Label3_5.Visible = $false
     } elseif ($clickedLabel -eq $LabelT34) {
         $Label3_1.Visible = $false
         $Label3_2.Visible = $false
         $Label3_3.Visible = $false
         $Label3_4.Visible = $true
+        $Label3_5.Visible = $false
+    } elseif ($clickedLabel -eq $LabelT35) {
+        $Label3_1.Visible = $false
+        $Label3_2.Visible = $false
+        $Label3_3.Visible = $false
+        $Label3_4.Visible = $false
+        $Label3_5.Visible = $true
     }
 }
 
@@ -2992,11 +3556,14 @@ $LabelT31.Add_Click($Label_Click3)
 $LabelT32.Add_Click($Label_Click3)
 $LabelT33.Add_Click($Label_Click3)
 $LabelT34.Add_Click($Label_Click3)
+$LabelT35.Add_Click($Label_Click3)
 
 $LabelT31.Add_Click($Label_ClickX3)
 $LabelT32.Add_Click($Label_ClickX3)
 $LabelT33.Add_Click($Label_ClickX3)
 $LabelT34.Add_Click($Label_ClickX3)
+$LabelT35.Add_Click($Label_ClickX3)
+
 
 
 ###### S H E L L
@@ -3057,11 +3624,10 @@ $panelTS.Controls.Add($TextBox0S)
 $Button0S.Add_Click({
     $TextBox0S.Text = "Attendere..."
     try {
-        $TextBox0S.Text = iex($textBoxs.Text) | Out-String
+        $TextBox0S.Text = Invoke-Expression($textBoxs.Text) | Out-String
     } catch {
         $TextBox0S.Text = "Inserire un comando valido"
     }
-    $TextBox0S.Text = iex($textBoxs.Text) | Out-String
 })
 
 # Add event handler to handle click events for the tabs
