@@ -30,7 +30,8 @@ There are commands for:
 - checking network activities, getting reports, capturing traffic and simple resetting
 - comparing files, checking folders content differences, searching for file duplicates and finding specific files
 - splitting/joining file bitwise, inverting 0s and 1s, setting circular left bitshift
-- checking files hash, generating passwords, using online malware scanners and sanitize volumes.
+- checking files hash, generating passwords, using online malware scanners and sanitize volumes
+- dump registry, scheduled tasks, prefetch and check files hex.
 
 
 
@@ -44,6 +45,7 @@ There are commands for:
 
 ![Screenshot4](https://github.com/Zigul1/CoverShell/assets/157254375/c37d6a48-cfd1-4876-9b0a-62846463e5c8)
 
+![Screenshot5](https://github.com/Zigul1/CoverShell/assets/157254375/a9bde9c7-f8bd-4ff3-8ce5-e89a198d4ea7)
 
 
 ## Anche in italiano! ![image](https://github.com/Zigul1/CoverShell/assets/157254375/66240214-9ee5-4829-8bee-1fd0fe72cc70)
@@ -77,6 +79,7 @@ Ci sono comandi per:
 - controllare attività di rete, ottenere *report*, catturare traffico e fare un *reset* basilare
 - confrontare *file*, controllare differenze di contenuto fra cartelle, cercare *file* duplicati e trovare specifici *file*
 - dividere/unire *file* al livello di *bit*, invertire 0 e 1, attuare rotazione circolare dei *bit* verso sinistra
-- controllare l'*hash* dei *file*, generare *password*, ricorrere a *scanner online* per controllo *malware* e sanificare volumi.
+- controllare l'*hash* dei *file*, generare *password*, ricorrere a *scanner online* per controllo *malware* e sanificare volumi
+- scaricare il registro, *scheduled tasks*, *prefetch* e controllare i *file* in esadecimale.
 
 Per ulteriori info: https://www.turbolab.it/4039
