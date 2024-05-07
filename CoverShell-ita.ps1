@@ -658,13 +658,13 @@ $PanelT13.Controls.Add($textBox136)
 
 $Label137 = New-Object System.Windows.Forms.Label
 $Label137.Location = New-Object System.Drawing.Point(200,370)
-$Label137.Size = New-Object System.Drawing.Size (50,20)
+$Label137.Size = New-Object System.Drawing.Size (90,20)
 $Label137.Font = "Verdana, 11"
 $Label137.BackColor = "#101c28"
 $PanelT13.Controls.Add($Label137)
 
 $Label138 = New-Object System.Windows.Forms.Label
-$Label138.Location = New-Object System.Drawing.Point(255,370)
+$Label138.Location = New-Object System.Drawing.Point(300,370)
 $Label138.Size = New-Object System.Drawing.Size (150,20)
 $Label138.Text = "Iterazioni fatte"
 $Label138.Font = "Verdana, 11"
