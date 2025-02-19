@@ -18,7 +18,7 @@ public static extern IntPtr GetConsoleWindow();
 public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 '
 $consolePtr = [Console.Window]::GetConsoleWindow()
-[Console.Window]::ShowWindow($consolePtr, 6)
+[Console.Window]::ShowWindow($consolePtr, 0)
 
 #create the screen form-window that will contain everything
 $main_form = New-Object System.Windows.Forms.Form
