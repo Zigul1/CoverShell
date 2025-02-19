@@ -46,7 +46,7 @@ $main_form.Controls.Add($LabelC)
 
 # Create Label for "version"
 $LabelV = New-Object System.Windows.Forms.Label
-$LabelV.Text = "v. 1.1.0"
+$LabelV.Text = "v. 1.1.1"
 $LabelV.Font = "Verdana, 9"
 $LabelV.Location = New-Object System.Drawing.Point(850,625)
 $LabelV.ForeColor = "#ffffff"
