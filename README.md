@@ -12,7 +12,7 @@ Tested succesfully using **PowerShell 5.1** and **PowerShell 7.4** on **Windows 
 - Download the repository in .zip format and then extract it in a folder
 2.
 - right-click on the "CoverShell.ps1" file and then left-click on "Run with PowerShell" (**alternatively**: open the shell in the file folder, using SHIFT + RIGHT-CLICK, and run the script setting a compatible execution policy using the PowerShell command: `powershell.exe -ep bypass .\CoverShell.ps1`)
-- the shell will appear for a moment, then it will minimize itself and you will see the GUI, in the background of already opened windows
+- the shell will appear for a moment, then it will minimize itself and you will see the GUI
 3.
 - to close the application, just close the CoverShell window or the Powershell one minimized
 
@@ -62,7 +62,7 @@ Testato con successo usando **PowerShell 5.1** e **PowerShell 7.4** su **Windows
 - Scaricare il *repository* in formato .zip ed estrarlo in una cartella
 2.
 - cliccare con il destro sul *file* "CoverShell-ita.ps1" e poi con il sinistro su "Esegui con PowerShell" (**in alternativa**, aprire la *shell* nella cartella del *file*, usando SHIFT + TASTO DESTRO, e lanciare lo *script* impostando una *execution policy* adeguata usando il comando PowerShell `powershell.exe -ep bypass .\CoverShell-ita.ps1`
-- la *shell* apparirà per un momento, poi si ridurrà ad icona e comparirà la GUI, in *background* rispetto alle finestre già aperte
+- la *shell* apparirà per un momento, poi si ridurrà ad icona e comparirà la GUI
 3.
 - per chiudere l'applicazione, è sufficiente chiudere la finestra di CoverShell o quella minimizzata di PowerShell.
 
